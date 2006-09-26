@@ -11,6 +11,7 @@ XPI=${PACKAGE}-${VERSION}.xpi
 xpi: ${XPI}
 
 ${XPI}: install
+	test -z "${NO_UPDATE}" || sed -i -e '/em:updateURL/d' ${xpidir}/install.rdf
 	cd ${xpichromedir} \
 	&& ${ZIP} -r -m ${PACKAGE}.jar */
 	cd ${xpidir} \
