@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xsml-stylesheet href="fireflix.css" type="text/css"?>
+<!DOCTYPE dialog SYSTEM "chrome://fireflix/locale/fireflix.dtd">
+<dialog
+ xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+ id="generated_content"
+ buttons="accept"
+ defaultbutton="accept"
+ title="&generated.title;"
+ onload="generated.init()"
+ >
+
+ <script src="generated-content.js" type="application/x-javascript"/>
+
+ <vbox class="generated wholething" flex="1">
+  <textbox flex="1" minheight="300" minwidth="300" id="data" multiline="true" readonly="true" />
+  <button id="copy" label="&generated.copy;" oncommand="generated.copy()" />
+ </vbox>
+</dialog>

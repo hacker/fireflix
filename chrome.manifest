@@ -1,0 +1,5 @@
+content fireflix content/
+
+overlay chrome://browser/content/browser.xul chrome://fireflix/content/browser.xul
+
+locale fireflix en-US locale/en-US/

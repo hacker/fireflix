@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="fireflix.css" type="text/css"?>
+<!DOCTYPE window SYSTEM "chrome://fireflix/locale/fireflix.dtd">
+<window
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+  id="aboutFireflix" title="&aboutFireflix;"
+  orient="vertical"
+  width="400" height="200"
+  >
+
+ <hbox class="about wholething" flex="1">
+  <hbox flex="1" class="insides">
+   <vbox>
+    <spacer flex="1"/>
+    <image src="icons/32x32/fireflix.png" width="32" height="32" />
+    <spacer flex="1"/>
+   </vbox>
+   <groupbox flex="1" class="text" orient="vertical">
+    <spacer flex="2"/>
+    <hbox>
+     <spacer flex="1"/>
+     <label value="Fireflix &autoconf.version;" class="title"/>
+     <spacer flex="1"/>
+    </hbox>
+    <spacer flex="1"/>
+    <hbox>
+     <label value="Copyright © 2006 "/>
+     <label value="Klever Group" class="link"
+      onclick="window.openDialog('chrome://browser/content/browser.xul','_blank','chrome,all,dialog=no','http://www.klever.net/',null,null)" />
+    </hbox>
+    <spacer flex="2"/>
+   </groupbox>
+   <vbox>
+    <spacer flex="10" />
+    <button label="&about.license.label;" tooltiptext="&about.license.tip;"
+    oncommand="window.openDialog('chrome://fireflix/content/copying.xul','copying')" />
+    <spacer flex="2" />
+    <button label="OK" oncommand="window.close()"/>
+    <spacer flex="1" />
+   </vbox>
+  </hbox>
+ </hbox>
+
+</window>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay SYSTEM "chrome://fireflix/locale/fireflix.dtd">
+<overlay id="fireflixOverlay"
+  xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" >
+
+ <menupopup id="viewSidebarMenu">
+  <menuitem observes="viewFireflixSidebar" />
+ </menupopup>
+
+ <broadcasterset id="mainBroadcasterSet">
+  <broadcaster id="viewFireflixSidebar"
+    autoCheck="false" label="&browser.sidebar.label;"
+    type="checkbox" group="sidebar"
+    sidebarurl="chrome://fireflix/content/fireflix-panel.xul"
+    sidebartitle="&browser.sidebar.title;"
+    oncommand="toggleSidebar('viewFireflixSidebar')" />
+ </broadcasterset>
+</overlay>
+

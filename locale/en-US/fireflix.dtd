@@ -1,0 +1,79 @@
+<!ENTITY % autoconf SYSTEM "chrome://fireflix/content/autoconf.dtd">
+%autoconf;
+
+<!-- About Box -->
+
+<!ENTITY aboutFireflix "About Fireflix" >
+<!ENTITY about.ok.label "OK">
+<!ENTITY about.license.label "License">
+<!ENTITY about.license.tip "Show copying policy">
+
+<!-- COPYING -->
+
+<!ENTITY copying.title "Filreflix: copying policy">
+
+<!-- Sidebar -->
+
+<!ENTITY panel.auth_info "Authorization info">
+<!ENTITY panel.no_auth_info "No auth info available">
+<!ENTITY panel.auth_button "Authorize">
+<!ENTITY panel.auth_complete_button "Authorization complete">
+<!ENTITY panel.flickr_button.label "Flickr">
+<!ENTITY panel.flickr_button.tip "Open Flickr in new tab">
+
+<!ENTITY panel.tabs.search "Search" >
+<!ENTITY panel.tabs.sets "Sets" >
+<!ENTITY panel.tabs.tags "Tags" >
+<!ENTITY panel.tabs.upload "Upload" >
+
+<!ENTITY panel.search.cmd_search.label "Search" >
+<!ENTITY panel.search.search_for.label "Search for:" >
+<!ENTITY panel.search.mode.tagsonly.label "tags">
+<!ENTITY panel.search.mode.tagsonly.tip "Search tags only">
+<!ENTITY panel.search.mode.mine.label "mine">
+<!ENTITY panel.search.col.title.label "Title">
+<!ENTITY panel.search.cmd_search_open.label "Open">
+
+<!ENTITY panel.sets.name.label "Set">
+<!ENTITY panel.sets.name.tip "Photoset name">
+<!ENTITY panel.sets.photos.label "Photos">
+<!ENTITY panel.sets.photos.tip "Number of photos in set">
+
+<!ENTITY panel.sets.cmd_refresh_sets "Refresh">
+<!ENTITY panel.sets.cmd_properties "Properties">
+
+<!ENTITY panel.sets.generate_html "Generate HTML">
+
+<!ENTITY panel.setphotos.title.label "Title">
+<!ENTITY panel.setphotos.title.tip "Picture title">
+<!ENTITY panel.setphotos.taken.label "Taken">
+<!ENTITY panel.setphotos.taken.tip "When the picture was taken">
+<!ENTITY panel.setphotos.upload.label "Uploaded">
+<!ENTITY panel.setphotos.upload.tip "When the picure was uploaded">
+
+<!ENTITY panel.tagslist.tag.label "Tag">
+
+<!ENTITY panel.uploadlist.file.label "File name">
+<!ENTITY panel.uploadlist.title.label "Title">
+<!ENTITY panel.uploadlist.status.label "Status">
+
+<!ENTITY panel.upload_props.filename.label "File:">
+<!ENTITY panel.upload_props.title.label "Title:">
+<!ENTITY panel.upload_props.tags.label "Tags:">
+
+<!ENTITY panel.uploads.upload.label "Upload">
+<!ENTITY panel.uploads.clear.label "Clear">
+<!ENTITY panel.uploads.remove.label "Remove">
+<!ENTITY panel.uploads.add.label "Add">
+<!ENTITY panel.uploads.generate_html "Generate HTML">
+
+<!ENTITY generated.title "Fireflix: Generated content">
+<!ENTITY generated.copy "copy">
+
+<!ENTITY browser.sidebar.label "Fireflix">
+<!ENTITY browser.sidebar.title "Fireflix">
+
+<!ENTITY photosetprops.title "Photoset properties">
+<!ENTITY photosetprops.set_title.label "Photoset title:">
+<!ENTITY photosetprops.set_desc.label "Photoset description:">
+

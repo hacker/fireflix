@@ -1,0 +1,90 @@
+.generated.wholething,
+.about.wholething,
+tabbox, tabpanels, tabpanel {
+ background: url("background.jpeg");
+}
+tabpanels {
+ padding: 0px;
+}
+
+tree {
+ margin-top: 2px;
+ background: rgb(12,167,0);
+ color: rgb(255,255,0);
+ font-size: 90%;
+}
+tree treechildren { /* for windows */
+ background: rgb(12,167,0);
+}
+
+tree#uploadlist treechildren::-moz-tree-cell-text(pending) {
+}
+tree#uploadlist treechildren::-moz-tree-cell-text(completed) {
+ color: white;
+}
+tree#uploadlist treechildren::-moz-tree-row(failed) {
+ background: yellow;
+}
+tree#uploadlist treechildren::-moz-tree-cell-text(failed) {
+ color: red;
+}
+tree#uploadlist treechildren::-moz-tree-cell-text(uploading) {
+ font-weight: bold;
+}
+
+groupbox#searchresult_props,
+groupbox.search_params,
+groupbox#upload_file_props,
+groupbox#set_props,
+groupbox#set_photo_props {
+ background: white;
+}
+
+groupbox#upload_file_props label {
+ text-align: right;
+}
+
+image#set_photo, image#set_primary {
+ border: black 1px solid;
+}
+
+.about .insides {
+ margin: 1ex;
+}
+.about .text {
+ border: yellow solid 1px;
+ background: green;
+}
+.about .title {
+ font-size: 300%;
+ font-weight: bold;
+ color: yellow;
+}
+.about .link {
+ text-decoration: underline;
+ color: white;
+ cursor: pointer;
+}
+
+menuitem.menuhead {
+ background: gray;
+ color: black;
+ font-weight: bold;
+}
+
+label#searchresult_description {
+ font-weight: bold;
+}
+textbox#searchresult_description {
+ padding: 1px 3px !important;
+ background: white;
+}
+
+#copying div {
+ margin: 1ex 1em;
+ font-family: courier, monospace;
+ font-size: 9pt;
+ padding: 2px;
+ border: dotted 1px gray;
+ background: white;
+}

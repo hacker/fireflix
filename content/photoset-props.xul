@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xsml-stylesheet href="fireflix.css" type="text/css"?>
+<!DOCTYPE dialog SYSTEM "chrome://fireflix/locale/fireflix.dtd">
+<dialog
+ xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+ id="photoset_props"
+ buttons="accept,cancel"
+ defaultbutton="accept"
+ title="&photosetprops.title;"
+ onload="psetprops.init()"
+ ondialogaccept="psetprops.on_accept()"
+ >
+
+ <script src="photoset-props.js" type="application/x-javascript"/>
+
+ <commandset>
+  <command id="cmd_select_picture"
+  oncommand="psetprops.on_select_picture(event)"/>
+ </commandset>
+ 
+ <hbox class="wholething">
+  <vbox>
+   <menulist id="primary_picture_list" hidden="true" sizetopopup="always"/>
+   <hbox pack="center">
+    <box width="100" pack="center">
+     <image id="primary_picture" hidden="true"/>
+    </box>
+   </hbox>
+  </vbox>
+  <vbox flex="1" minwidth="300">
+   <label control="set_title" value="&photosetprops.set_title.label;"/>
+   <textbox id="set_title" />
+   <label control="set_desc" value="&photosetprops.set_desc.label;"/>
+   <textbox id="set_desc" multiline="true" rows="5" />
+  </vbox>
+ </hbox>
+</dialog>

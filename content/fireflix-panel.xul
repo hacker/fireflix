@@ -1,0 +1,252 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/" type="text/css"?>
+<?xml-stylesheet href="fireflix.css" type="text/css"?>
+<!DOCTYPE page SYSTEM "chrome://fireflix/locale/fireflix.dtd">
+<page
+ xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
+ id="fireflixwindow" title="Fireflix"
+ onload="fireflix.init()"
+ orient="vertical"
+ ondragover="nsDragAndDrop.dragOver(event,fireflix.uploadObserver)"
+ ondragdrop="nsDragAndDrop.drop(event,fireflix.uploadObserver)"
+ >
+
+ <script src="chrome://global/content/nsDragAndDrop.js"/>
+ <script src="chrome://global/content/nsTransferable.js"/>
+ <script type="application/x-javascript" src="md5.js" />
+ <script type="application/x-javascript" src="flickr.js" />
+ <script type="application/x-javascript" src="fireflix.js" />
+
+ <stringbundleset>
+  <stringbundle id="loc_strings" src="chrome://fireflix/locale/fireflix.properties" />
+ </stringbundleset>
+
+ <commandset id="cmdset_search">
+  <command id="cmd_search" label="&panel.search.cmd_search.label;"
+  oncommand="fireflix.foundphotos.search_photos()"/>
+  <command id="cmd_search_open" label="&panel.search.cmd_search_open.label;"
+  oncommand="fireflix.foundphotos.on_cmd_open(event)" />
+ </commandset>
+
+ <commandset id="cmdset_sets">
+  <command id="cmd_refresh_sets" label="&panel.sets.cmd_refresh_sets;"
+  oncommand="fireflix.on_refresh_sets()" />
+  <command id="cmd_set_props" label="&panel.sets.cmd_properties;"
+  oncommand="fireflix.on_set_props()" disabled="true" />
+ </commandset>
+
+ <popupset>
+  <popup id="sets_menu">
+   <menuitem command="cmd_set_props"/>
+   <menuitem command="cmd_refresh_sets"/>
+   <menuseparator/>
+   <menu label="&panel.sets.generate_html;" id="sets_html_menu"/>
+  </popup>
+ </popupset>
+
+ <commandset id="cmdset_uploads">
+  <command id="cmd_uploads_clear" label="&panel.uploads.clear.label;"
+  oncommand="fireflix.uploads.on_clear()" />
+  <command id="cmd_uploads_upload" label="&panel.uploads.upload.label;"
+  oncommand="fireflix.uploads.on_upload()" />
+  <command id="cmd_uploads_remove" label="&panel.uploads.remove.label;"
+  oncommand="fireflix.uploads.on_remove()" />
+  <command id="cmd_uploads_add" label="&panel.uploads.add.label;"
+  oncommand="fireflix.uploads.on_add()" />
+ </commandset>
+
+ <popupset>
+  <popup id="uploads_menu">
+   <menuitem command="cmd_uploads_add"/>
+   <menuitem command="cmd_uploads_clear"/>
+   <menuitem command="cmd_uploads_remove"/>
+   <menuseparator/>
+   <menuitem command="cmd_uploads_upload"/>
+   <menuseparator/>
+   <menu label="&panel.uploads.generate_html;" id="uploads_html_menu"/>
+  </popup>
+ </popupset>
+
+ <vbox class="wholething" flex="1">
+
+  <groupbox>
+   <caption label="&panel.auth_info;"/>
+   <hbox>
+    <label id="auth_info" value="&panel.no_auth_info;" flex="1" disabled="true"/>
+    <button id="b_auth" label="&panel.auth_button;" oncommand="fireflix.on_auth()"/>
+    <button id="b_auth_done" label="&panel.auth_complete_button;" hidden="true"
+    oncommand="fireflix.on_auth_done()"/>
+    <button label="&panel.flickr_button.label;"
+    tooltiptext="&panel.flickr_button.tip;"
+    oncommand="fireflix.openTab('http://www.flickr.com/')" />
+   </hbox>
+  </groupbox>
+
+  <tabbox flex="1" id="fireflix_tabs">
+
+   <tabs>
+    <tab label="&panel.tabs.search;"/>
+    <tab label="&panel.tabs.sets;"/>
+    <tab label="&panel.tabs.tags;" hidden="true"/> <!-- TODO: -->
+    <tab id="tab_upload" label="&panel.tabs.upload;"/>
+   </tabs>
+
+   <tabpanels flex="1">
+
+    <tabpanel id="tabpanel_search" flex="1">
+     <vbox flex="1">
+      <groupbox class="search_params" orient="vertical" onkeypress="if(event.keyCode==event.DOM_VK_RETURN) fireflix.foundphotos.search_photos()">
+       <hbox>
+	<label control="search_for" value="&panel.search.search_for.label;"
+	accesskey="s"/>
+	<textbox id="search_for" flex="1"/>
+       </hbox>
+       <hbox>
+        <checkbox id="search_tags" label="&panel.search.mode.tagsonly.label;"
+	tooltiptext="&panel.search.mode.tagsonly.tip;" checked="false"
+	accesskey="t" />
+	<checkbox id="search_mine" label="&panel.search.mode.mine.label;" checked="true" accesskey="m"/>
+	<spacer flex="1"/>
+	<button command="cmd_search"/>
+       </hbox>
+      </groupbox>
+      <tree id="searchresults" rows="4" flex="1"
+      onselect="fireflix.foundphotos.on_select()"
+      ondblclick="fireflix.foundphotos.on_cmd_open(event)"
+      onkeypress="if(event.keyCode==event.DOM_VK_RETURN)
+      fireflix.foundphotos.on_cmd_open(event)">
+       <treecols>
+        <treecol id="sr_title" label="&panel.search.col.title.label;" flex="2" crop="end" align="start" />
+       </treecols>
+       <treechildren/>
+      </tree>
+      <groupbox id="searchresult_props" orient="horizontal" hidden="true">
+       <vbox width="100" pack="center">
+        <hbox pack="center">
+         <image id="search_photo"/>
+	</hbox>
+       </vbox>
+       <vbox flex="1">
+        <label id="searchresult_title"/>
+	<textbox flex="1" multiline="true" class="plain" readonly="true" id="searchresult_description"/>
+	<hbox pack="end">
+	 <button command="cmd_search_open"/>
+	</hbox>
+       </vbox>
+      </groupbox>
+     </vbox>
+    </tabpanel>
+
+    <tabpanel id="tabpanel_sets" flex="1"
+     onkeypress="if(event.keyCode==event.DOM_VK_RETURN)
+     document.getElementById('setphotos').focus()">
+     <vbox flex="1">
+      <tree id="setslist" rows="4" onselect="fireflix.photosets.on_select()"
+      flex="1" context="sets_menu"
+      >
+       <treecols>
+	<treecol id="sl_name" label="&panel.sets.name.label;" flex="4" crop="end" align="start" tooltiptext="&panel.sets.name.tip;"/>
+	<splitter class="tree-splitter" />
+	<treecol id="sl_photos" label="&panel.sets.photos.label;" flex="1" align="end" tooltiptext="&panel.sets.photos.tip;" />
+       </treecols>
+       <treechildren/>
+      </tree>
+      <hbox>
+       <button command="cmd_refresh_sets" />
+       <button command="cmd_set_props" />
+      </hbox>
+      <tree id="setphotos" rows="4" onselect="fireflix.photoset.on_select()"
+      flex="1">
+       <treecols>
+	<treecol id="sp_title" label="&panel.setphotos.title.label;" flex="1" crop="end" align="start" tooltiptext="&panel.setphotos.title.tip;" />
+	<splitter class="tree-splitter" />
+	<treecol id="sp_taken" label="&panel.setphotos.taken.label;" crop="end" align="start" tooltiptext="&panel.setphotos.taken.tip;" hidden="true" />
+	<treecol id="sp_upload" label="&panel.setphotos.upload.label;" crop="end" align="start" tooltiptext="&panel.setphotos.upload.tip;" hidden="true" />
+       </treecols>
+       <treechildren/>
+      </tree>
+      <groupbox id="set_photo_props" orient="horizontal">
+       <vbox width="100" pack="center">
+        <hbox pack="center">
+	 <image id="set_photo" hidden="true"/>
+	</hbox>
+       </vbox>
+       <spacer flex="1"/>
+      </groupbox>
+     </vbox>
+    </tabpanel>
+
+    <tabpanel id="tabpanel_tags">
+     <listbox id="tagslist" rows="8" flex="1">
+      <listhead>
+       <listheader label="&panel.tagslist.tag.label;"/>
+      </listhead>
+      <listcols>
+       <listcol flex="1"/>
+      </listcols>
+     </listbox>
+    </tabpanel>
+
+    <tabpanel id="tabpanel_upload">
+     <vbox flex="1">
+      <tree id="uploadlist" rows="8" flex="1"
+      onselect="fireflix.uploads.selectionChanged()"
+      context="uploads_menu">
+       <treecols>
+	<treecol id="up_file" label="&panel.uploadlist.file.label;" flex="4" crop="start" align="start"/>
+	<splitter class="tree-splitter" />
+	<treecol id="up_title" label="&panel.uploadlist.title.label;" flex="5" crop="end" align="start" />
+	<splitter class="tree-splitter" />
+	<treecol id="up_status" label="&panel.uploadlist.status.label;" flex="1" crop="end" align="start" />
+       </treecols>
+       <treechildren/>
+      </tree>
+      <progressmeter id="upload_progress" mode="undetermined" hidden="true" />
+      <groupbox id="upload_file_props" orient="horizontal" hidden="true">
+       <image id="upload_file_preview" width="100" height="100" />
+       <grid flex="1">
+        <columns>
+	 <column/>
+	 <column flex="1"/>
+	</columns>
+	<rows>
+	 <row>
+	  <label control="upload_filename"
+	  value="&panel.upload_props.filename.label;" />
+	  <textbox id="upload_filename"
+	  oninput="fireflix.uploads.propsToSel('filename')"/>
+	 </row>
+	 <row>
+	  <label control="upload_title" value="&panel.upload_props.title.label;" />
+	  <textbox id="upload_title"
+	  oninput="fireflix.uploads.propsToSel('title')"/>
+	 </row>
+	 <row>
+	  <label control="uplod_tags" value="&panel.upload_props.tags.label;" />
+	  <textbox id="upload_tags"
+	  oninput="fireflix.uploads.propsToSel('tags')"/>
+	 </row>
+	 <!-- TODO: description, public, friend, family -->
+	</rows>
+       </grid>
+      </groupbox>
+      <hbox>
+       <button command="cmd_uploads_add" />
+       <spacer flex="1"/>
+       <button command="cmd_uploads_remove" />
+       <spacer flex="1"/>
+       <button command="cmd_uploads_clear" />
+      </hbox>
+      <hbox pack="center">
+       <button command="cmd_uploads_upload" flex="1"/>
+      </hbox>
+     </vbox>
+    </tabpanel>
+
+   </tabpanels>
+
+  </tabbox>
+
+ </vbox>
+
+</page>
