@@ -1,0 +1,25 @@
+
+# /
+/Makefile
+/Makefile.in
+/aclocal.m4
+/autom4te.cache
+/config.log
+/config.status
+/configure
+/install-sh
+/install.rdf
+/missing
+/update.rdf
+/xpi
+/INSTALL
+/{4269f719-86de-4668-b8ad-04752c23a69e}
+
+# /content/
+/content/autoconf.dtd
+/content/Makefile
+/content/Makefile.in
+
+# /locale/
+/locale/Makefile
+/locale/Makefile.in
