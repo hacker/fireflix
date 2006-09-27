@@ -110,7 +110,7 @@
 	<button command="cmd_search"/>
        </hbox>
       </groupbox>
-      <tree id="searchresults" rows="4" flex="1"
+      <tree id="searchresults" rows="2" flex="1"
       onselect="fireflix.foundphotos.on_select()"
       ondblclick="fireflix.foundphotos.on_cmd_open(event)"
       onkeypress="if(event.keyCode==event.DOM_VK_RETURN)
@@ -141,7 +141,7 @@
      onkeypress="if(event.keyCode==event.DOM_VK_RETURN)
      document.getElementById('setphotos').focus()">
      <vbox flex="1">
-      <tree id="setslist" rows="4" onselect="fireflix.photosets.on_select()"
+      <tree id="setslist" rows="2" onselect="fireflix.photosets.on_select()"
       flex="1" context="sets_menu"
       >
        <treecols>
@@ -155,7 +155,7 @@
        <button command="cmd_refresh_sets" />
        <button command="cmd_set_props" />
       </hbox>
-      <tree id="setphotos" rows="4" onselect="fireflix.photoset.on_select()"
+      <tree id="setphotos" rows="2" onselect="fireflix.photoset.on_select()"
       flex="1">
        <treecols>
 	<treecol id="sp_title" label="&panel.setphotos.title.label;" flex="1" crop="end" align="start" tooltiptext="&panel.setphotos.title.tip;" />
@@ -189,7 +189,7 @@
 
     <tabpanel id="tabpanel_upload">
      <vbox flex="1">
-      <tree id="uploadlist" rows="8" flex="1"
+      <tree id="uploadlist" rows="2" flex="1"
       onselect="fireflix.uploads.selectionChanged()"
       context="uploads_menu">
        <treecols>
