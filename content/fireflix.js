@@ -38,6 +38,8 @@ var fireflix = {
   this.set_auth_state(this.flickr.token,false);
   if(this.flickr.token) {
    this.refresh_stuff();
+  }else{
+   this.on_cmd_auth();
   }
  },
  set_auth_state: function(au,inp) { /* authorized, in progress */
