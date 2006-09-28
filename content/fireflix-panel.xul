@@ -93,7 +93,7 @@
   <groupbox context="auth_menu">
    <caption label="&panel.auth_info;"/>
    <hbox>
-    <label id="auth_info" value="&panel.no_auth_info;" flex="1" disabled="true"/>
+    <label id="auth_info" value="&panel.no_auth_info;" flex="1" disabled="true" crop="end"/>
     <button id="b_auth" command="cmd_auth_auth"/>
     <button id="b_auth_done" command="cmd_auth_done" hidden="true"/>
     <button command="cmd_auth_open_flickr" 
