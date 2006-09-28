@@ -12,6 +12,13 @@ function splitascii(s) {
 var fireflix = {
  flickr: new Flickr(),
  init: function() {
+  this.cmd_auth_auth = document.getElementById('cmd_auth_auth');
+  this.cmd_auth_done = document.getElementById('cmd_auth_done');
+  this.cmd_auth_unauth = document.getElementById('cmd_auth_unauth');
+  this.menu_auth_done = document.getElementById('menu_auth_done');
+  this.b_auth = document.getElementById('b_auth');
+  this.b_auth_done = document.getElementById('b_auth_done');
+  this.auth_info = document.getElementById('auth_info');
   this.loc_strings = document.getElementById('loc_strings');
   this.build_menus();
   this.cmd_set_props = document.getElementById('cmd_set_props');
@@ -27,41 +34,54 @@ var fireflix = {
   document.getElementById('setslist').view = this.photosets;
   document.getElementById('setphotos').view = this.photoset;
   document.getElementById('uploadlist').view = this.uploads;
-  this.flickr.no_auth_info_label = document.getElementById('auth_info').value;
+  this.no_auth_info_label = this.auth_info.value;
+  this.set_auth_state(this.flickr.token,false);
   if(this.flickr.token) {
    this.refresh_stuff();
-   document.getElementById('auth_info').value =
-    this.flickr.user.fullname+' ['+this.flickr.user.username+']';
-   document.getElementById('auth_info').disabled = false;
-   document.getElementById('b_auth').hidden = true;
   }
  },
- on_auth: function() {
+ set_auth_state: function(au,inp) { /* authorized, in progress */
+  this.cmd_auth_unauth.disabled = !au;
+  this.b_auth.hidden = au || inp;
+  this.b_auth_done.hidden = !inp;
+  this.menu_auth_done.hidden = !inp;
+  this.cmd_auth_done.setAttribute('disabled',!inp);
+  this.auth_info.disabled = !au;
+  if(au) {
+   this.auth_info.value = this.flickr.user.fullname+' ['+this.flickr.user.username+']'; /* TODO: move to locale */
+  }else{
+   this.auth_info.value = this.no_auth_info_label;
+  }
+ },
+ on_cmd_auth: function() {
   var _this = this;
   this.flickr.authorize_0(
    function() {
-    document.getElementById('b_auth').hidden = true;
-    document.getElementById('b_auth_done').hidden = false;
+    _this.set_auth_state(_this.flickr.token,true);
    }, function(x,s,c,m) {
     _this.flickr_failure(x,s,c,m);
    }
   );
  },
- on_auth_done: function() {
-  document.getElementById('b_auth_done').hidden = true;
+ on_cmd_auth_done: function() {
+  this.set_auth_state(this.flickr.token,false);
   var _this = this;
   this.flickr.authorize_1(
    function() {
     _this.flickr.save_token();
     _this.refresh_stuff();
-    document.getElementById('auth_info').value =
+    _this.set_auth_state(_this.flickr.token,false);
+    _this.auth_info.value = 
      _this.flickr.user.fullname+' ['+_this.flickr.user.username+']';
-    document.getElementById('auth_info').disabled = false;
    }, function(x,s,c,m) {
-    document.getElementById('b_auth').hidden = false;
+    _this.set_auth_state(_this.flickr.token,false); /* XXX: no reset token? */
     _this.flickr_failure(x,s,c,m);
    }
   );
+ },
+ on_cmd_auth_unauth: function() {
+  this.flickr.reset_token();
+  this.set_auth_state(false,false);
  },
 
  refresh_sets: function() { this.photosets.refresh_sets(); },
@@ -866,12 +886,10 @@ var fireflix = {
  flickr_failure: function(x,s,c,m) {
   if(c==98) { // Invalid auth token
    this.flickr.reset_token();
-   document.getElementById('auth_info').value = this.no_auth_info_label;
-   document.getElementById('auth_info').disabled = true;
-   document.getElementById('b_auth').hidden = false;
+   this.set_auth_state(false,false);
    return;
   }
-  // TODO: is that beauty
+  // TODO: is that beauty?
   alert('flickr api call failed\n'+c+' '+m);
  }
 

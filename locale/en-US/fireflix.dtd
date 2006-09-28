@@ -16,10 +16,12 @@
 
 <!ENTITY panel.auth_info "Authorization info">
 <!ENTITY panel.no_auth_info "No auth info available">
-<!ENTITY panel.auth_button "Authorize">
-<!ENTITY panel.auth_complete_button "Authorization complete">
-<!ENTITY panel.flickr_button.label "Flickr">
-<!ENTITY panel.flickr_button.tip "Open Flickr in new tab">
+
+<!ENTITY panel.auth.auth.label "Authorize">
+<!ENTITY panel.auth.done.label "Authorization complete">
+<!ENTITY panel.auth.flickr.label "Flickr">
+<!ENTITY panel.auth.flickr.tip "Open Flickr in new tab">
+<!ENTITY panel.auth.unauth.label "Sign off">
 
 <!ENTITY panel.tabs.search "Search" >
 <!ENTITY panel.tabs.sets "Sets" >

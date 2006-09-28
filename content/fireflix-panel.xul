@@ -21,6 +21,27 @@
   <stringbundle id="loc_strings" src="chrome://fireflix/locale/fireflix.properties" />
  </stringbundleset>
 
+ <commandset>
+  <command id="cmd_auth_auth" label="&panel.auth.auth.label;"
+  oncommand="fireflix.on_cmd_auth()"/>
+  <command id="cmd_auth_done" label="&panel.auth.done.label;"
+  oncommand="fireflix.on_cmd_auth_done()" disabled="true"/>
+  <command id="cmd_auth_open_flickr" label="&panel.auth.flickr.label;"
+  oncommand="fireflix.openTab('htp://www.flickr.com/')" />
+  <command id="cmd_auth_unauth" label="&panel.auth.unauth.label;"
+  oncommand="fireflix.on_cmd_auth_unauth()" />
+ </commandset>
+ 
+ <popupset>
+  <popup id="auth_menu">
+   <menuitem command="cmd_auth_auth"/>
+   <menuitem command="cmd_auth_done" hidden="true" id="menu_auth_done"/>
+   <menuitem command="cmd_auth_unauth" />
+   <menuseparator/>
+   <menuitem command="cmd_auth_open_flickr"/>
+  </popup>
+ </popupset>
+
  <commandset id="cmdset_search">
   <command id="cmd_search" label="&panel.search.cmd_search.label;"
   oncommand="fireflix.foundphotos.search_photos()"/>
@@ -69,16 +90,14 @@
 
  <vbox class="wholething" flex="1">
 
-  <groupbox>
+  <groupbox context="auth_menu">
    <caption label="&panel.auth_info;"/>
    <hbox>
     <label id="auth_info" value="&panel.no_auth_info;" flex="1" disabled="true"/>
-    <button id="b_auth" label="&panel.auth_button;" oncommand="fireflix.on_auth()"/>
-    <button id="b_auth_done" label="&panel.auth_complete_button;" hidden="true"
-    oncommand="fireflix.on_auth_done()"/>
-    <button label="&panel.flickr_button.label;"
-    tooltiptext="&panel.flickr_button.tip;"
-    oncommand="fireflix.openTab('http://www.flickr.com/')" />
+    <button id="b_auth" command="cmd_auth_auth"/>
+    <button id="b_auth_done" command="cmd_auth_done" hidden="true"/>
+    <button command="cmd_auth_open_flickr" 
+    tooltiptext="&panel.auth.flickr.tip;"/>
    </hbox>
   </groupbox>
 
