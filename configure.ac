@@ -14,7 +14,7 @@ AC_SUBST([xpichromedir],[\${xpidir}/chrome])
 AC_SUBST([xpichromecontentdir],[\${xpichromedir}/content])
 AC_SUBST([xpichromelocaledir],[\${xpichromedir}/locale])
 
-COPYING="`sed -e 's/\\"/\\&quot;/g' -e 's,$,<br/>,g' COPYING|tr '\n' ' '`"
+COPYING="`sed -e 's/\\"/\\&quot;/g' -e 's,$,<br/>,g' -e 's/(c)/\\&#xa9;/g' COPYING|tr '\n' ' '`"
 AC_SUBST([COPYING])
 
 AC_CONFIG_FILES([
