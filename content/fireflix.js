@@ -12,16 +12,12 @@ function splitascii(s) {
 var fireflix = {
  flickr: new Flickr(),
  init: function() {
-  this.cmd_auth_auth = document.getElementById('cmd_auth_auth');
-  this.cmd_auth_done = document.getElementById('cmd_auth_done');
-  this.cmd_auth_unauth = document.getElementById('cmd_auth_unauth');
-  this.menu_auth_done = document.getElementById('menu_auth_done');
-  this.b_auth = document.getElementById('b_auth');
-  this.b_auth_done = document.getElementById('b_auth_done');
-  this.auth_info = document.getElementById('auth_info');
-  this.loc_strings = document.getElementById('loc_strings');
+  pull_elements(this,document,[
+   'cmd_auth_auth','cmd_auth_done','cmd_auth_unauth',
+   'menu_auth_done','b_auth','b_auth_done','auth_info',
+   'loc_strings','cmd_set_props'
+  ]);
   this.build_menus();
-  this.cmd_set_props = document.getElementById('cmd_set_props');
   this.foundphotos.init(this);
   this.photosets.init(this);
   this.photoset.init(this);
@@ -312,12 +308,10 @@ var fireflix = {
   fireflix: null,
   init: function(f) {
    this.fireflix=f;
-   this.upload_filename = document.getElementById('upload_filename');
-   this.upload_title = document.getElementById('upload_title');
-   this.upload_file_preview = document.getElementById('upload_file_preview');
-   this.upload_file_props = document.getElementById('upload_file_props');
-   this.upload_progress = document.getElementById('upload_progress');
-   this.upload_tags = document.getElementById('upload_tags');
+   pull_elements(this,document,[
+    'upload_filename','upload_title','upload_file_preview',
+    'upload_file_props','upload_progress','upload_tags'
+   ]);
   },
   files: new Array(),
   rowCount: 0,
@@ -691,14 +685,12 @@ var fireflix = {
   fireflix: null,
   init: function(f) {
    this.fireflix = f;
-   this.search_for = document.getElementById('search_for');
-   this.search_tags= document.getElementById('search_tags');
-   this.search_mine = document.getElementById('search_mine');
+   pull_elements(this,document,[
+    'search_for','search_tags','search_mine',
+    'searchresult_props','search_photo',
+    'searchresult_title','searchresult_description'
+   ]);
    document.getElementById('searchresults').view = this;
-   this.searchresult_props = document.getElementById('searchresult_props');
-   this.search_photo = document.getElementById('search_photo');
-   this.searchresult_title = document.getElementById('searchresult_title');
-   this.searchresult_description = document.getElementById('searchresult_description');
   },
   photos: new Array(),
   rowCount: 0,

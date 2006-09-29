@@ -59,3 +59,12 @@ function xp_node(xp,x) {
  return rv.singleNodeValue;
 }
 
+/*
+ * pull in elements into documents as a member variables
+ */
+function pull_elements(th,d,els) {
+ for(var e in els) {
+  var en=els[e];
+  th[en] = d.getElementById(en);
+ }
+}
