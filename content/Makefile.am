@@ -2,7 +2,7 @@ xpichromecontent_DATA = \
 	autoconf.dtd \
 	browser.xul about.xul fireflix-panel.xul photoset-props.xul \
 	generated-content.xul \
-	photoset-props.js fireflix.js flickr.js md5.js \
+	photoset-props.js fireflix.js flickr.js util.js md5.js \
 	generated-content.js \
 	fireflix.css \
 	background.jpeg
