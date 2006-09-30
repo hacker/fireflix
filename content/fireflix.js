@@ -754,6 +754,25 @@ var fireflix = {
     }
    );
   },
+  render_description_frame: function(content) {
+   if(!content) {
+    try {
+     this.searchresult_description.contentDocument.lastChild.innerHTML
+      = '';
+    }catch(e) { } /* it will throw exceptions when the iframe isn't well
+    prepared to meet me, but it's unimportant then, anyway */
+   }else{
+    this.searchresult_description.contentDocument.lastChild.setAttribute(
+     'style',
+     'font-size: 80%; margin: 1px 3px; font-family: arial, sans-serif'
+    );
+    this.searchresult_description.contentDocument.lastChild.innerHTML
+     = content;
+    var ls = this.searchresult_description.contentDocument.links;
+    for(var l=0;l<ls.length;++l)
+     ls.item(l).setAttribute('target','_blank');
+   }
+  },
   on_select: function() {
    if(this.selection.currentIndex<0) {
     this.searchresult_props.hidden = true;
@@ -764,7 +783,7 @@ var fireflix = {
     }else{
      this.search_photo.src = this.fireflix.flickr.make_photo_url(p,'t');
      this.searchresult_title.value = p.title;
-     this.searchresult_description.value = null;
+     this.render_description_frame(null);
      if(p.description==null && p.description==undefined) {
       var pid = p.id;
       var ci = this.selection.currentIndex;
@@ -780,7 +799,7 @@ var fireflix = {
 	if(ci==_this.selection.currentIndex && pp.id==pid) {
 	 var n = xp_node('/rsp/photo',xr.responseXML);
 	 pp.fromNode_(n);
-	 _this.searchresult_description.value=pp.description?pp.description:null;
+	 _this.render_description_frame(pp.description);
 	}
        }, function(x,s,c,m) {
 	_this.fireflix.flickr_failure(x,s,c,m);
@@ -788,7 +807,7 @@ var fireflix = {
       );
       this.searchresult_props.hidden = false;
      }else{
-      this.searchresult_description.value=p.description?p.description:null;
+      this.render_description_frame(p.description);
      }
     }
    }

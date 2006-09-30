@@ -72,14 +72,6 @@ menuitem.menuhead {
  font-weight: bold;
 }
 
-label#searchresult_description {
- font-weight: bold;
-}
-textbox#searchresult_description {
- padding: 1px 3px !important;
- background: white;
-}
-
 #copying div {
  margin: 1ex 1em;
  font-family: courier, monospace;
