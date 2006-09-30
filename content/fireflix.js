@@ -94,6 +94,7 @@ var fireflix = {
   fireflix: null,
   init: function(f) {
    this.fireflix = f;
+   pull_elements(this,document,[ 'set_photo' ]);
   },
   rowCount: 0,
   getCellText: function(r,c) {
@@ -148,11 +149,11 @@ var fireflix = {
   on_select: function() {
    if(this.selection.count==1) {
     var p = this.photos[this.selection.currentIndex];
-    document.getElementById('set_photo').src =
+    this.set_photo.src =
      this.fireflix.flickr.get_photo_url(p.server,p.id,p.secret,'t');
-    document.getElementById('set_photo').hidden = false;
+    this.set_photo.hidden = false;
    }else{
-    document.getElementById('set_photo').hidden = true;
+    this.set_photo.hidden = true;
    }
   }
  },
@@ -310,7 +311,8 @@ var fireflix = {
    this.fireflix=f;
    pull_elements(this,document,[
     'upload_filename','upload_title','upload_file_preview',
-    'upload_file_props','upload_progress','upload_tags'
+    'upload_file_props','upload_progress','upload_tags',
+    'cmd_uploads_upload'
    ]);
   },
   files: new Array(),
@@ -401,7 +403,7 @@ var fireflix = {
   },
   upload_to: function(_this) { _this.upload_worker(); },
   on_file_upload: function(f) {
-   document.getElementById('cmd_uploads_upload').setAttribute('disabled','true');
+   this.cmd_uploads_upload.setAttribute('disabled','true');
    for(var fi in this.files) {
     if(this.files[fi].file==f.file) {
      this.tree.ensureRowIsVisible(fi);
@@ -448,7 +450,7 @@ var fireflix = {
     }
    }
    this.selection.clearSelection();
-   document.getElementById('cmd_uploads_upload').setAttribute('disabled','false');
+   this.cmd_uploads_upload.setAttribute('disabled','false');
    this.upload_progress.setAttribute('hidden','true');
   },
 
