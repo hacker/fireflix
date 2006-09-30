@@ -12,6 +12,7 @@
  ondialogaccept="psetprops.on_accept()"
  >
 
+ <script src="util.js" type="application/x-javascript"/>
  <script src="photoset-props.js" type="application/x-javascript"/>
 
  <commandset>

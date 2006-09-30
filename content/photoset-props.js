@@ -4,21 +4,19 @@ var psetprops = {
  photoset: null,
  pripic: null,
 
- settitle: null, setdesc: null,
- primarypic: null,
  photos: new Array(),
  init: function() {
   this.fireflix = window.arguments[0];
   this.photoset = window.arguments[1];
-  this.settitle = document.getElementById('set_title');
-  this.settitle.value = this.photoset.title;
-  this.setdesc = document.getElementById('set_desc');
-  this.setdesc.value = this.photoset.description;
-  this.primarypic = document.getElementById('primary_picture');
-  this.primarypic.src =
+  pull_elements(this,document,[
+   'set_title','set_desc','primary_picture',
+   'primary_picture_list'
+  ]);
+  this.set_title.value = this.photoset.title;
+  this.set_desc.value = this.photoset.description;
+  this.primary_picture.src =
    this.fireflix.flickr.get_image_url( this.photoset, 't' );
-  this.primarypic.hidden = false;
-  this.picslist = document.getElementById('primary_picture_list');
+  this.primary_picture.hidden = false;
 
   var _this = this;
   this.fireflix.flickr.api_call(
@@ -31,7 +29,7 @@ var psetprops = {
     var xp = x.evaluate(
      '/rsp/photoset/photo', x, null,
      XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
-    _this.picslist.removeAllItems(); _this.photos= new Array();
+    _this.primary_picture_list.removeAllItems(); _this.photos= new Array();
     var n; while(n=xp.iterateNext()) {
      _this.photos.push(
       {
@@ -40,25 +38,25 @@ var psetprops = {
        server: n.getAttribute('server')
       }
      );
-     var ni = _this.picslist.appendItem(
+     var ni = _this.primary_picture_list.appendItem(
       n.getAttribute('title'), _this.photos.length-1
      );
      ni.setAttribute('command','cmd_select_picture');
      if(n.getAttribute('isprimary')==1) {
-      _this.picslist.selectedItem = ni;
+      _this.primary_picture_list.selectedItem = ni;
       _this.pripic = _this.photos[_this.photos.length-1];
      }
     }
-    _this.picslist.hidden = false;
+    _this.primary_picture_list.hidden = false;
    }, function() { }
   );
  },
  on_select_picture: function(ev) {
   var epic = ev.explicitOriginalTarget;
-  this.picslist.selectedItem = epic;
-  var pic = this.photos[this.picslist.selectedItem.value];
+  this.primary_picture_list.selectedItem = epic;
+  var pic = this.photos[this.primary_picture_list.selectedItem.value];
   this.pripic = pic;
-  this.primarypic.src =
+  this.primary_picture.src =
    this.fireflix.flickr.get_photo_url(
     pic.server,
     pic.id,
@@ -67,10 +65,8 @@ var psetprops = {
    );
  },
  on_accept: function() {
-  this.photoset.title =
-   document.getElementById('set_title').value;
-  this.photoset.description = 
-   document.getElementById('set_desc').value;
+  this.photoset.title = this.set_title.value;
+  this.photoset.description = this.set_desc.value;
   this.photoset.server = this.pripic.server;
   this.photoset.primary = this.pripic.id;
   this.photoset.secret = this.pripic.secret;
