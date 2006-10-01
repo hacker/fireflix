@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <news>
+ <version version="" date="">
+  <ni>a lot of code cleanup and UI cosmetics</ni>
+ </version>
  <version version="0.0" date="September 26th, 2006">
   <ni>Initial release</ni>
  </version>
