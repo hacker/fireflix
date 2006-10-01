@@ -48,6 +48,12 @@
   oncommand="fireflix.foundphotos.search_photos()"/>
   <command id="cmd_search_open" label="&panel.search.cmd_search_open.label;"
   oncommand="fireflix.foundphotos.on_cmd_open(event)" />
+  <command id="cmd_search_prev_page"
+  label="&panel.search.cmd_search_prev_page.label;"
+  oncommand="fireflix.foundphotos.on_cmd_prev(event)" disabled="true"/>
+  <command id="cmd_search_next_page"
+  label="&panel.search.cmd_search_next_page.label;"
+  oncommand="fireflix.foundphotos.on_cmd_next(event)" disabled="true"/>
  </commandset>
 
  <commandset id="cmdset_sets">
@@ -130,6 +136,13 @@
 	<button command="cmd_search"/>
        </hbox>
       </groupbox>
+      <hbox>
+       <button command="cmd_search_prev_page"/>
+       <spacer flex="1"/>
+       <label id="search_page" hidden="true"/>
+       <spacer flex="1"/>
+       <button command="cmd_search_next_page"/>
+      </hbox>
       <tree id="searchresults" rows="2" flex="1"
       onselect="fireflix.foundphotos.on_select()"
       ondblclick="fireflix.foundphotos.on_cmd_open(event)"

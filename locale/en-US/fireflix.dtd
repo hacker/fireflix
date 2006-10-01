@@ -35,6 +35,8 @@
 <!ENTITY panel.search.mode.mine.label "mine">
 <!ENTITY panel.search.col.title.label "Title">
 <!ENTITY panel.search.cmd_search_open.label "Open">
+<!ENTITY panel.search.cmd_search_prev_page.label "«">
+<!ENTITY panel.search.cmd_search_next_page.label "»">
 
 <!ENTITY panel.sets.name.label "Set">
 <!ENTITY panel.sets.name.tip "Photoset name">

@@ -692,7 +692,8 @@ var fireflix = {
    pull_elements(this,document,[
     'search_for','search_tags','search_mine',
     'searchresult_props','search_photo',
-    'searchresult_title','searchresult_description'
+    'searchresult_title','searchresult_description',
+    'search_page','cmd_search_prev_page','cmd_search_next_page'
    ]);
    document.getElementById('searchresults').view = this;
   },
@@ -729,6 +730,10 @@ var fireflix = {
    this.rowCount = this.photos.length;
    this.tree.endUpdateBatch();
   },
+  paging: {
+   pars: null,
+   page: null, pages: null, perpage: null, total: null
+  },
   search_photos: function() {
    var pars = {
     method: 'flickr.photos.search',
@@ -742,20 +747,55 @@ var fireflix = {
    }else{
     pars.text=this.search_for.value;
    }
+   this.paging.pars = new Object();
+   this.paging.page = null; this.paging.pages = null;
+   this.paging.perpage = null; this.paging.total = null;
+   for(var p in pars) this.paging.pars[p] = pars[p];
+   this.perform_search(pars);
+  },
+  perform_search: function(p) {
    var _this = this;
-   this.fireflix.flickr.api_call( pars,
+   this.fireflix.flickr.api_call( p,
     function(xr) {
      var x = xr.responseXML;
-     var xp = x.evaluate(
-      '/rsp/photos/photo', x, null,
-      XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
+     var xp = xp_nodes('/rsp/photos/photo',x);
      _this.importXPR(xp);
      _this.tree.ensureRowIsVisible(0);
+     xp = xp_node('/rsp/photos',x);
+     _this.paging.page = parseInt(xp.getAttribute('page'));
+     _this.paging.pages = parseInt(xp.getAttribute('pages'));
+     _this.paging.perpage = parseInt(xp.getAttribute('perpage'));
+     _this.paging.total = parseInt(xp.getAttribute('total'));
+     _this.update_paging();
      _this.on_select();
     }, function(x,s,c,m) {
      _this.fireflix.flickr_failure(x,s,c,m);
     }
    );
+  },
+  on_cmd_prev: function(ev) {
+   var pars = new Object();
+   for(var p in this.paging.pars) pars[p] = this.paging.pars[p];
+   pars.page=this.paging.page-1; pars.per_page=this.paging.perpage;
+   this.perform_search(pars);
+  },
+  on_cmd_next: function(ev) {
+   var pars = new Object();
+   for(var p in this.paging.pars) pars[p] = this.paging.pars[p];
+   pars.page=this.paging.page+1; pars.per_page=this.paging.perpage;
+   this.perform_search(pars);
+  },
+  update_paging: function() {
+   if(! (this.paging.pars && this.paging.page && this.paging.pages) ) {
+    this.search_page.value=''; this.search_page.hidden = true;
+    this.cmd_search_prev_page.setAttribute('disabled','true');
+    this.cmd_search_next_page.setAttribute('disabled','true');
+   }else{
+    this.search_page.value=this.fireflix.loc_strings.getFormattedString('search_page',[this.paging.page,this.paging.pages]);
+    this.search_page.hidden=false;
+    this.cmd_search_prev_page.setAttribute('disabled',(this.paging.page>1)?'false':'true');
+    this.cmd_search_next_page.setAttribute('disabled',(this.paging.page<this.paging.pages)?'false':'true');
+   }
   },
   render_description_frame: function(content) {
    if(!content) {

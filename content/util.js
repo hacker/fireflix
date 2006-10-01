@@ -58,6 +58,13 @@ function xp_node(xp,x) {
   xp, x, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null );
  return rv.singleNodeValue;
 }
+/*
+ * extract xpath-specified ordered set of nodes
+ */
+function xp_nodes(xp,x) {
+ return x.evaluate(
+  xp, x, null, XPathResult.ORDERED_NODE_ITERATOR_TYPE, null);
+}
 
 /*
  * pull in elements into documents as a member variables
