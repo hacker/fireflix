@@ -145,21 +145,15 @@ Flickr.prototype = {
  },
 
  frob: null,
- authorize_0: function(on_s, on_f) {
+ authorize_0: function(perms, on_s, on_f) {
   var _this = this;
   this.api_call(
    { method: 'flickr.auth.getFrob' },
    function(x) {
     _this.frob = xp_str('/rsp/frob',x.responseXML);
     var u = _this.api_call_url(
-     { frob: _this.frob, perms: 'delete' }, _this.auth_url );
-    var wm = Components.classes['@mozilla.org/appshell/window-mediator;1'].getService(
-     Components.interfaces.nsIWindowMediator );
-    var bw = wm.getMostRecentWindow('navigator:browser');
-    var b = bw.getBrowser();
-    var t = b.addTab(u);
-    b.selectedTab = t;
-    if(on_s) on_s();
+     { frob: _this.frob, perms: perms?perms:'delete' }, _this.auth_url );
+    if(on_s) on_s(x,_this.frob,u);
    }, function(x,s,c,m) {
     if(on_f) on_f(x,s,c,m);
    }

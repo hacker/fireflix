@@ -54,7 +54,9 @@ var fireflix = {
  on_cmd_auth: function() {
   var _this = this;
   this.flickr.authorize_0(
-   function() {
+   'delete',
+   function(x,f,u) {
+    _this.openTab(u);
     _this.set_auth_state(_this.flickr.token,true);
    }, function(x,s,c,m) {
     _this.flickr_failure(x,s,c,m);
