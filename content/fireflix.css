@@ -72,6 +72,13 @@ menuitem.menuhead {
  font-weight: bold;
 }
 
+div#searchresult_description {
+ min-height: 5em; max-height: 8em;
+ overflow: auto;
+ font-size: 90%;
+ margin: 0.1ex 0.5ex;
+}
+
 #copying div {
  margin: 1ex 1em;
  font-family: courier, monospace;

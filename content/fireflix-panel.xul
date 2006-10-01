@@ -148,7 +148,7 @@
        </vbox>
        <vbox flex="1">
         <label id="searchresult_title"/>
-	<iframe flex="1" id="searchresult_description"/>
+	<div flex="1" id="searchresult_description" xmlns="http://www.w3.org/1999/xhtml"/>
 	<hbox pack="end">
 	 <button command="cmd_search_open"/>
 	</hbox>

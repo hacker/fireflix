@@ -756,21 +756,13 @@ var fireflix = {
   },
   render_description_frame: function(content) {
    if(!content) {
-    try {
-     this.searchresult_description.contentDocument.lastChild.innerHTML
-      = '';
-    }catch(e) { } /* it will throw exceptions when the iframe isn't well
-    prepared to meet me, but it's unimportant then, anyway */
+    this.searchresult_description.innerHTML = '';
    }else{
-    this.searchresult_description.contentDocument.lastChild.setAttribute(
-     'style',
-     'font-size: 80%; margin: 1px 3px; font-family: arial, sans-serif'
-    );
-    this.searchresult_description.contentDocument.lastChild.innerHTML
-     = content;
-    var ls = this.searchresult_description.contentDocument.links;
-    for(var l=0;l<ls.length;++l)
-     ls.item(l).setAttribute('target','_blank');
+    this.searchresult_description.innerHTML = content?content:'';
+    /* of all linking elements flickr only allows a */
+    var as = this.searchresult_description.getElementsByTagName('a');
+    for(var a=0;a<as.length;++a)
+     as.item(a).setAttribute('target','_blank');
    }
   },
   on_select: function() {
