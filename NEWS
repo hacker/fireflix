@@ -1,4 +1,5 @@
  ()
-  - a lot of code cleanup and UI cosmetics
+  - ability to paginate through search results
+  - a lot of code cleanup and UI polishing
 0.0 (September 26th, 2006)
   - Initial release
