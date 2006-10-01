@@ -44,7 +44,7 @@ groupbox#upload_file_props label {
  text-align: right;
 }
 
-image#set_photo, image#set_primary {
+image#search_photo, image#set_photo, image#set_primary {
  border: black 1px solid;
 }
 
