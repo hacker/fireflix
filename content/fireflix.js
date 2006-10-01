@@ -778,6 +778,7 @@ var fireflix = {
     }else{
      this.search_photo.src = this.fireflix.flickr.make_photo_url(p,'t');
      this.searchresult_title.value = p.title;
+     this.searchresult_title.tooltipText = p.title;
      this.render_description_frame(null);
      if(p.description==null && p.description==undefined) {
       var pid = p.id;

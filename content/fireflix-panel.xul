@@ -147,8 +147,10 @@
 	</hbox>
        </vbox>
        <vbox flex="1">
-        <label id="searchresult_title"/>
-	<div flex="1" id="searchresult_description" xmlns="http://www.w3.org/1999/xhtml"/>
+        <label id="searchresult_title" crop="end"/>
+	<hbox flex="1" pack="center">
+	 <div flex="1" id="searchresult_description" xmlns="http://www.w3.org/1999/xhtml"/>
+	</hbox>
 	<hbox pack="end">
 	 <button command="cmd_search_open"/>
 	</hbox>
