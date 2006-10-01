@@ -748,6 +748,7 @@ var fireflix = {
       '/rsp/photos/photo', x, null,
       XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
      _this.importXPR(xp);
+     _this.tree.ensureRowIsVisible(0);
      _this.on_select();
     }, function(x,s,c,m) {
      _this.fireflix.flickr_failure(x,s,c,m);
