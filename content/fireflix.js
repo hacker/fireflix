@@ -798,10 +798,16 @@ var fireflix = {
    }
   },
   render_description_frame: function(content) {
-   if(!content) {
-    this.searchresult_description.innerHTML = '';
-   }else{
-    this.searchresult_description.innerHTML = content?content:'';
+   this.searchresult_description.innerHTML = '';
+   if(content) {
+    var dp = new DOMParser();
+    var pd = dp.parseFromString(
+     '<div xmlns="http://www.w3.org/1999/xhtml">'+content+'</div>', 'text/xml' );
+    var de = pd.documentElement;
+    if(de.tagName=='parsererror')
+     this.searchresult_description.innerHTML=this.fireflix.loc_strings.getString('broken_description');
+    else
+     this.searchresult_description.appendChild(de);
     /* of all linking elements flickr only allows a */
     var as = this.searchresult_description.getElementsByTagName('a');
     for(var a=0;a<as.length;++a)
