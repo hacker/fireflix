@@ -27,9 +27,6 @@ var fireflix = {
   this.flickr.api_shs = '9c33c9e2f0f0cfd5';
   this.flickr.prefs_root = 'net.klever.kin.fireflix';
   this.flickr.load_token();
-  document.getElementById('setslist').view = this.photosets;
-  document.getElementById('setphotos').view = this.photoset;
-  document.getElementById('uploadlist').view = this.uploads;
   this.no_auth_info_label = this.auth_info.value;
   this.set_auth_state(this.flickr.token,false);
   if(this.flickr.token) {
@@ -97,6 +94,7 @@ var fireflix = {
   init: function(f) {
    this.fireflix = f;
    pull_elements(this,document,[ 'set_photo' ]);
+   document.getElementById('setphotos').view = this;
   },
   rowCount: 0,
   getCellText: function(r,c) {
@@ -166,6 +164,7 @@ var fireflix = {
   fireflix: null,
   init: function(f) {
    this.fireflix = f;
+   document.getElementById('setslist').view = this;
   },
   rowCount: 0,
   getCellText: function(r,c) {
@@ -316,6 +315,7 @@ var fireflix = {
     'upload_file_props','upload_progress','upload_tags',
     'cmd_uploads_upload'
    ]);
+   document.getElementById('uploadlist').view = this;
   },
   files: new Array(),
   rowCount: 0,
