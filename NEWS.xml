@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <news>
- <version version="" date="">
-  <ni>ability to paginate through search results</ni>
-  <ni>a lot of code cleanup and UI polishing</ni>
+ <version version="0.0.1" date="October 3rd, 2006">
+  <ni>Added ability to paginate through search results</ni>
+  <ni>Fixed packaging bug that omitted packaging license dialog</ni>
+  <ni>A lot of code cleanup and UI polishing</ni>
  </version>
  <version version="0.0" date="September 26th, 2006">
   <ni>Initial release</ni>

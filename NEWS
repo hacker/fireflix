@@ -1,5 +1,6 @@
- ()
-  - ability to paginate through search results
-  - a lot of code cleanup and UI polishing
+0.0.1 (October 3rd, 2006)
+  - Added ability to paginate through search results
+  - Fixed packaging bug that omitted packaging license dialog
+  - A lot of code cleanup and UI polishing
 0.0 (September 26th, 2006)
   - Initial release
