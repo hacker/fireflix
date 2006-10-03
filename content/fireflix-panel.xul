@@ -156,7 +156,8 @@
       <groupbox id="searchresult_props" orient="horizontal" hidden="true">
        <vbox width="100" pack="center">
         <hbox pack="center">
-         <image id="search_photo"/>
+         <image id="search_photo"
+	 ondblclick="fireflix.foundphotos.on_cmd_open(event)"/>
 	</hbox>
        </vbox>
        <vbox flex="1">
