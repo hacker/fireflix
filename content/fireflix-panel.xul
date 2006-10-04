@@ -28,7 +28,7 @@
   <command id="cmd_auth_done" label="&panel.auth.done.label;"
   oncommand="fireflix.on_cmd_auth_done()" disabled="true"/>
   <command id="cmd_auth_open_flickr" label="&panel.auth.flickr.label;"
-  oncommand="fireflix.openTab('htp://www.flickr.com/')" />
+  oncommand="fireflix.openTab('http://www.flickr.com/')" />
   <command id="cmd_auth_unauth" label="&panel.auth.unauth.label;"
   oncommand="fireflix.on_cmd_auth_unauth()" />
  </commandset>
