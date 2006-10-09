@@ -876,7 +876,7 @@ var fireflix = {
   var rv = '';
   for(var i in photos) {
    var p = photos[i];
-   rv += this.photo_html(p,utl,uti)+'\n';
+   rv += this.photo_html(p,uti,utl)+'\n';
   }
   return rv;
  },
