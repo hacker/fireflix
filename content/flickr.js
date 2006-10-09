@@ -255,9 +255,14 @@ Flickr.prototype = {
   );
  },
  get_photo_page_url: function(p) {
-  if(p instanceof Photo) // TODO: half wrong, what if no owner?
-   return this.photos_url + (p.owner.nsid?p.owner.nsid:this.user.nsid) + '/' + p.id;
-  else // TODO: take owner into account?
+  if(p instanceof Photo) {
+   // TODO: track photoset and user owner id from there?
+   // The approach below is sheerly wrong.
+   var o = this.user.nsid;
+   if(p.owner && p.owner.nsid) o = p.owner.nsid;
+   var rv = this.photos_url + o +'/' + p.id;
+   return rv;
+  }else // TODO: take owner into account?
    return this.photos_url + this.user.nsid + '/' + p;
  },
  make_photo_url: function(p,sfx) {
