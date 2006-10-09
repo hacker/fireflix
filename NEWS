@@ -1,3 +1,6 @@
+ ()
+  - Fixed HTML generation code
+  - Fixed a mistyped flickr url so that the 'Flickr' button works now
 0.0.1 (October 3rd, 2006)
   - Added ability to paginate through search results
   - Fixed packaging bug that omitted packaging license dialog

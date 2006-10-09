@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <news>
+ <version version="" date="">
+  <ni>Fixed HTML generation code</ni>
+  <ni>Fixed a mistyped flickr url so that the 'Flickr' button works now</ni>
+ </version>
  <version version="0.0.1" date="October 3rd, 2006">
   <ni>Added ability to paginate through search results</ni>
   <ni>Fixed packaging bug that omitted packaging license dialog</ni>
