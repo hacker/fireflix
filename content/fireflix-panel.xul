@@ -31,6 +31,8 @@
   oncommand="fireflix.openTab('http://www.flickr.com/')" />
   <command id="cmd_auth_unauth" label="&panel.auth.unauth.label;"
   oncommand="fireflix.on_cmd_auth_unauth()" />
+  <command id="cmd_help" label="?"
+  oncommand="fireflix.openTab('chrome://fireflix/content/help.xml')" />
  </commandset>
  
  <popupset>
@@ -105,6 +107,7 @@
     <button id="b_auth_done" command="cmd_auth_done" hidden="true"/>
     <button command="cmd_auth_open_flickr" 
     tooltiptext="&panel.auth.flickr.tip;"/>
+    <button command="cmd_help"/>
    </hbox>
   </groupbox>
 

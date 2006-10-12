@@ -5,7 +5,8 @@ xpichromecontent_DATA = \
 	photoset-props.js fireflix.js flickr.js util.js md5.js \
 	generated-content.js \
 	fireflix.css \
-	background.jpeg
+	background.jpeg \
+	help.xml
 
 sized_icons = \
 	$(addsuffix .png, \

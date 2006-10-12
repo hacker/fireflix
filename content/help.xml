@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+ <head>
+  <title>Fireflix</title>
+  <link rel="stylesheet" href="fireflix.css" type="text/css"/>
+ </head>
+ <body>
+
+  <p>This is a brief overview of things you can do with <a href="http://kin.klever.net/fireflix/">fireflix</a>.</p>
+ 
+  <p>First, you should proceed with authorization. If you haven't done it yet,
+  it should happen automatically once you open fireflix sidebar. To clear
+  authorization token off of the preferences, right-click on the 'Authorization
+  info' part of the sidebar and select 'Sign off' from the pop up menu.</p>
+
+  <h1>In the 'Search' tab</h1>
+
+  <p>Basically, you can search flickr photos here. Either all or yours (keep
+  'mine' checked to search your own photos).</p>
+
+  <p>Once you have acquired search results you can browse through them. To open
+  any particular picture in a new tab either doubleclick it or hit ENTER.</p>
+
+  <p>While moving through the list of pictures found you should have a little
+  preview at the bottom of the window.</p>
+
+  <h1>In the 'Sets' tab</h1>
+
+  <p>This is where you can browse your sets. You can edit some sets properties
+  here and, most importantly, you can generate HTML of linked thumbnails for
+  sets contents. Use your right mouse button on the photoset.</p>
+
+  <h1>In The 'Uploads' tab</h1>
+
+  <p>To upload pictures you don't even have to select this tab. Drag'n'drop into
+  fireflix sidebar should do. There is nothing wrong with going into the tab and
+  using 'Add' button either.</p>
+
+  <p>You can add photos to the list, edit their titles and/or tags and once
+  you're done with it, trigger upload procedure. Once your images have been
+  uploaded, you will be prompted to create a photoset for newly uploaded photos.
+  You don't have to, though.</p>
+
+  <h1>Feedback</h1>
+
+  <p>As the extension is at the very early stage of development, feel free to
+  provide feedback at <a href="http://kin.klever.net/fireflix/feedback" title="click here to proceed to feedback form">http://kin.klever.net/fireflix/feedback/</a>.</p>
+
+  <div class="copyright">
+   <a href="http://www.klever.net/">© Klever Group</a>
+  </div>
+ </body>
+</html>

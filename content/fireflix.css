@@ -97,3 +97,26 @@ label#search_page {
  -moz-border-radius: 1em;
  padding: 0.5ex 1ex;
 }
+
+html body {
+ font-family: arial, sans-serif;
+ font-size: 11pt;
+ margin: 1em 4em;
+ padding: 1em 4em;
+ border: double 3px gray;
+ background: #ffffc0;
+}
+html h1 {
+ font-size: 130%; color: maroon;
+}
+html p {
+ text-align: justify;
+}
+
+html div.copyright {
+ font-size: 60%;
+ text-align: right;
+}
+html div.copyright a {
+ text-decoration: none;
+}

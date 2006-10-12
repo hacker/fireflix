@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <news>
  <version version="" date="">
+  <ni>Added brief help file</ni>
   <ni>Fixed HTML generation code</ni>
   <ni>Fixed a mistyped flickr url so that the 'Flickr' button works now</ni>
  </version>

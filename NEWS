@@ -1,4 +1,5 @@
  ()
+  - Added brief help file
   - Fixed HTML generation code
   - Fixed a mistyped flickr url so that the 'Flickr' button works now
 0.0.1 (October 3rd, 2006)
