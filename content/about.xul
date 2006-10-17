@@ -6,7 +6,7 @@
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"
   id="aboutFireflix" title="&aboutFireflix;"
   orient="vertical"
-  width="400" height="200"
+  width="450" height="250"
   >
 
  <hbox class="about wholething" flex="1">
