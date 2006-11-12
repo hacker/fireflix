@@ -101,7 +101,13 @@ var fireflix = {
    var p = this.photos[r];
    if(c.id=='sp_title') return p.title;
    if(c.id=='sp_taken') return p.datetaken;
-   if(c.id=='sp_upload') return p.dateupload; /* TODO: unixtime conversion */
+   if(c.id=='sp_upload') {
+    var du = new Date(p.dateupload*1000);
+    var rv = du.getFullYear()+'-'+(du.getMonth()+1)+'-'+du.getDate()
+     +' '+
+     du.getHours()+':'+du.getMinutes()+':'+du.getSeconds();
+    return rv.replace(/(\D)(\d)(\D)/,'$10$2$3');
+   }
    return c.id;
   },
   setTree: function(t) { this.tree = t },
