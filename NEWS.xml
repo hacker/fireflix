@@ -2,7 +2,7 @@
 <news>
  <version version="0.0.4" date="">
   <ni>Added the word 'sidebar' to the extension name so that you don't have to look hard for it</ni>
-  <ni>UI polishing</ni>
+  <ni>UI polishing, including making it more boring</ni>
   <ni>code cosmetics</ni>
  </version>
  <version version="0.0.3" date="November 6th, 2006">

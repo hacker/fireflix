@@ -1,6 +1,6 @@
-.generated.wholething,
-.about.wholething,
-tabbox, tabpanels, tabpanel {
+html#help,
+.generated.wholething, .about.wholething /* XXX:,
+tabbox, tabpanels, tabpanel */ {
  background: url("background.jpeg");
 }
 tabpanels {
@@ -9,18 +9,17 @@ tabpanels {
 
 tree {
  margin-top: 2px;
- background: rgb(12,167,0);
- color: rgb(255,255,0);
+ color: #2d354a;
  font-size: 90%;
 }
 tree treechildren { /* for windows */
- background: rgb(12,167,0);
+ background: #c5ffc5;
 }
 
 tree#uploadlist treechildren::-moz-tree-cell-text(pending) {
 }
 tree#uploadlist treechildren::-moz-tree-cell-text(completed) {
- color: white;
+ color: black;
 }
 tree#uploadlist treechildren::-moz-tree-row(failed) {
  background: yellow;
