@@ -102,12 +102,14 @@
   <groupbox context="auth_menu">
    <caption label="&panel.auth_info;"/>
    <hbox>
-    <label id="auth_info" value="&panel.no_auth_info;" flex="1" disabled="true" crop="end"/>
-    <button id="b_auth" command="cmd_auth_auth"/>
-    <button id="b_auth_done" command="cmd_auth_done" hidden="true"/>
-    <button command="cmd_auth_open_flickr" 
+    <vbox pack="center" flex="1">
+     <label id="auth_info" value="&panel.no_auth_info;" disabled="true" crop="end"/>
+    </vbox>
+    <button class="lean" id="b_auth" command="cmd_auth_auth"/>
+    <button class="lean" id="b_auth_done" command="cmd_auth_done" hidden="true"/>
+    <button class="lean" command="cmd_auth_open_flickr" 
     tooltiptext="&panel.auth.flickr.tip;"/>
-    <button command="cmd_help"/>
+    <button class="lean" command="cmd_help"/>
    </hbox>
   </groupbox>
 
@@ -126,8 +128,9 @@
      <vbox flex="1">
       <groupbox class="search_params" orient="vertical" onkeypress="if(event.keyCode==event.DOM_VK_RETURN) fireflix.foundphotos.search_photos()">
        <hbox>
-	<label control="search_for" value="&panel.search.search_for.label;"
-	accesskey="s"/>
+        <vbox pack="center">
+	 <label control="search_for" value="&panel.search.search_for.label;" accesskey="s"/>
+	</vbox>
 	<textbox id="search_for" flex="1"/>
        </hbox>
        <hbox>
@@ -136,15 +139,15 @@
 	accesskey="t" />
 	<checkbox id="search_mine" label="&panel.search.mode.mine.label;" checked="true" accesskey="m"/>
 	<spacer flex="1"/>
-	<button command="cmd_search"/>
+	<button class="lean" command="cmd_search"/>
        </hbox>
       </groupbox>
       <hbox>
-       <button command="cmd_search_prev_page"/>
+       <button class="lean" command="cmd_search_prev_page"/>
        <spacer flex="1"/>
        <label id="search_page" hidden="true"/>
        <spacer flex="1"/>
-       <button command="cmd_search_next_page"/>
+       <button class="lean" command="cmd_search_next_page"/>
       </hbox>
       <tree id="searchresults" rows="2" flex="1"
       onselect="fireflix.foundphotos.on_select()"
@@ -270,11 +273,11 @@
        </grid>
       </groupbox>
       <hbox>
-       <button command="cmd_uploads_add" />
+       <button class="lean" command="cmd_uploads_add" />
        <spacer flex="1"/>
-       <button command="cmd_uploads_remove" />
+       <button class="lean" command="cmd_uploads_remove" />
        <spacer flex="1"/>
-       <button command="cmd_uploads_clear" />
+       <button class="lean" command="cmd_uploads_clear" />
       </hbox>
       <hbox pack="center">
        <button command="cmd_uploads_upload" flex="1"/>
