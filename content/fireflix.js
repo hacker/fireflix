@@ -382,7 +382,6 @@ var fireflix = {
    for(var f in this.files) {
     if(this.files[f].state=='pending') {
      var ff = this.files[f];
-     dump('upload '+ff.file+'\n');
      this.on_file_upload(ff);
      ff.state='uploading';
      this.tree.invalidate();
@@ -406,7 +405,6 @@ var fireflix = {
      return;
     }
    }
-   dump('uploading done\n');
    this.on_finish_upload();
   },
   upload_to: function(_this) { _this.upload_worker(); },
