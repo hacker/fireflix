@@ -15,6 +15,7 @@
 
  <vbox class="generated wholething" flex="1">
   <textbox flex="1" minheight="300" minwidth="300" id="data" multiline="true" readonly="true" />
+  <button id="nolf" label="&generated.nolf;" oncommand="generated.nolf()" />
   <button id="copy" label="&generated.copy;" oncommand="generated.copy()" />
  </vbox>
 </dialog>

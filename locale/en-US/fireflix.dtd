@@ -73,6 +73,7 @@
 
 <!ENTITY generated.title "Fireflix: Generated content">
 <!ENTITY generated.copy "copy">
+<!ENTITY generated.nolf "remove linebreaks">
 
 <!ENTITY browser.sidebar.label "Fireflix">
 <!ENTITY browser.sidebar.title "Fireflix">

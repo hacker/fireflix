@@ -13,5 +13,9 @@ var generated = {
   var ch = Components.classes["@mozilla.org/widget/clipboardhelper;1"]
    .getService(Components.interfaces.nsIClipboardHelper);
   ch.copyString(this.data); 
+ },
+ nolf: function() {
+  this.databox.value = this.data.replace(/[\r\n]/,'');
+  document.getElementById('nolf').disabled = true;
  }
 };
