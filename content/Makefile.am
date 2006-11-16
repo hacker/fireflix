@@ -17,7 +17,8 @@ nobase_xpichromecontent_DATA = \
 	$(addprefix icons/, \
 	 $(addprefix 16x16/,${sized_icons}) \
 	 $(addprefix 32x32/,${sized_icons}) \
-	)
+	) \
+	icons/16x16/toolbar-button.png
 
 EXTRA_DIST = \
 	${xpichromecontent_DATA} ${nobase_xpichromecontent_DATA}
