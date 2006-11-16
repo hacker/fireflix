@@ -41,6 +41,10 @@
   uploaded, you will be prompted to create a photoset for newly uploaded photos.
   You don't have to, though.</p>
 
+  <h1>Beyond that</h1>
+
+  <p>You can also add the <img src="chrome://fireflix/content/icons/16x16/toolbar-button.png" alt="Fireflix" title="Fireflix"/> button to your toolbar. Just go to View/Toolbars/Customize and drag it to wherever you want it to be.</p>
+
   <h1>Feedback</h1>
 
   <p>As the extension is at the very early stage of development, feel free to

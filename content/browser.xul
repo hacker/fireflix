@@ -10,10 +10,21 @@
  <broadcasterset id="mainBroadcasterSet">
   <broadcaster id="viewFireflixSidebar"
     autoCheck="false" label="&browser.sidebar.label;"
+    tooltiptext="&browser.sidebar.tooltip;"
     type="checkbox" group="sidebar"
     sidebarurl="chrome://fireflix/content/fireflix-panel.xul"
     sidebartitle="&browser.sidebar.title;"
     oncommand="toggleSidebar('viewFireflixSidebar')" />
  </broadcasterset>
+
+ <toolbarpalette id="BrowserToolbarPalette">
+  <toolbarbutton id="fireflix-button"
+   oncommand="toggleSidebar('viewFireflixSidebar')"
+   image="chrome://fireflix/content/icons/16x16/toolbar-button.png" >
+   <observes element="viewFireflixSidebar" attribute="label"/>
+   <observes element="viewFireflixSidebar" attribute="tooltiptext"/>
+  </toolbarbutton>
+ </toolbarpalette>
+
 </overlay>
 
