@@ -132,6 +132,7 @@ var fireflix = {
    }
    this.rowCount = this.photos.length;
    this.tree.endUpdateBatch();
+   this.selection.clearSelection();
   },
   load_photos: function(psid) {
    var _this = this;
