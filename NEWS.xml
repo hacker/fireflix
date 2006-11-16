@@ -2,6 +2,7 @@
 <news>
  <version version="0.0.5">
   <ni>Added toolbar button</ni>
+  <ni>Enter or double click on photo in set now opens photo in flickr</ni>
  </version>
  <version version="0.0.4" date="November 13th, 2006">
   <ni>Added button to remove linebreaks from generated HTML</ni>
