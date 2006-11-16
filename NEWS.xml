@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <news>
- <version version="0.0.5">
+ <version version="0.0.5" date="November 17th, 2006">
   <ni>Added toolbar button</ni>
+  <ni>Generating HTML for photos selection in sets browser</ni>
   <ni>Enter or double click on photo in set now opens photo in flickr</ni>
   <ni>Double click on photoset opens photoset in flickr</ni>
   <ni>Hiding completely photo properties in sets browser when no photo
