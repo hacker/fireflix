@@ -184,6 +184,7 @@
      <vbox flex="1">
       <tree id="setslist" rows="2" onselect="fireflix.photosets.on_select()"
       flex="1" context="sets_menu"
+      ondblclick="fireflix.photosets.on_cmd_open_in_flickr(event)"
       >
        <treecols>
 	<treecol id="sl_name" label="&panel.sets.name.label;" flex="4" crop="end" align="start" tooltiptext="&panel.sets.name.tip;"/>

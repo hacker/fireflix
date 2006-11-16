@@ -271,6 +271,10 @@ Flickr.prototype = {
   else
    return this.get_image_url(p,sfx);
  },
+ make_photoset_url: function(ps) {
+  // TODO: allow for using someone else's photoset?
+  return this.photos_url+this.user.nsid+'/sets/'+ps.id;
+ },
 
  upload_file: function(f,fa,on_success,on_failure) {
   try {

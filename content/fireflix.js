@@ -164,11 +164,9 @@ var fireflix = {
    }
   },
   on_cmd_open: function(ev) {
-   if(this.selection.currentIndex<0)
-    return;
+   if(this.selection.currentIndex<0) return;
    var p = this.photos[this.selection.currentIndex];
-   if(!p.id)
-    return;
+   if(!p.id) return;
    this.fireflix.openTab(this.fireflix.flickr.make_photo_url(p,'p'));
   }
  },
@@ -236,6 +234,12 @@ var fireflix = {
    }else{
     this.fireflix.cmd_set_props.setAttribute('disabled','true');
    }
+  },
+  on_cmd_open_in_flickr: function(ev) {
+   if(this.selection.currentIndex<0) return;
+   var p = this.sets[this.selection.currentIndex];
+   if(!p.id) return;
+   this.fireflix.openTab(this.fireflix.flickr.make_photoset_url(p));
   }
  },
 

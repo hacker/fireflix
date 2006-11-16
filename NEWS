@@ -1,6 +1,7 @@
 0.0.5 ()
   - Added toolbar button
   - Enter or double click on photo in set now opens photo in flickr
+  - Double click on photoset opens photoset in flickr
 0.0.4 (November 13th, 2006)
   - Added button to remove linebreaks from generated HTML
   - Added the word 'sidebar' to the extension name so that you don't have to look hard for it
