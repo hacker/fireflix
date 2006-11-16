@@ -152,8 +152,7 @@
       <tree id="searchresults" rows="2" flex="1"
       onselect="fireflix.foundphotos.on_select()"
       ondblclick="fireflix.foundphotos.on_cmd_open(event)"
-      onkeypress="if(event.keyCode==event.DOM_VK_RETURN)
-      fireflix.foundphotos.on_cmd_open(event)">
+      onkeypress="if(event.keyCode==event.DOM_VK_RETURN) fireflix.foundphotos.on_cmd_open(event)">
        <treecols>
         <treecol id="sr_title" label="&panel.search.col.title.label;" flex="2" crop="end" align="start" />
        </treecols>
@@ -198,7 +197,8 @@
        <button command="cmd_set_props" />
       </hbox>
       <tree id="setphotos" rows="2" onselect="fireflix.photoset.on_select()"
-      flex="1">
+      flex="1" ondblclick="fireflix.photoset.on_cmd_open(event)"
+      onkeypress="if(event.keyCode==event.DOM_VK_RETURN) fireflix.photoset.on_cmd_open(event)">
        <treecols>
 	<treecol id="sp_title" label="&panel.setphotos.title.label;" flex="1" crop="end" align="start" tooltiptext="&panel.setphotos.title.tip;" />
 	<splitter class="tree-splitter" />
@@ -210,7 +210,8 @@
       <groupbox id="set_photo_props" orient="horizontal">
        <vbox width="100" pack="center">
         <hbox pack="center">
-	 <image id="set_photo" hidden="true"/>
+	 <image id="set_photo" hidden="true"
+	 ondblclick="fireflix.photoset.on_cmd_open(event)" />
 	</hbox>
        </vbox>
        <spacer flex="1"/>
