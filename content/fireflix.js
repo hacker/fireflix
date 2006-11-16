@@ -93,7 +93,7 @@ var fireflix = {
   fireflix: null,
   init: function(f) {
    this.fireflix = f;
-   pull_elements(this,document,[ 'set_photo' ]);
+   pull_elements(this,document,[ 'set_photo', 'set_photo_props' ]);
    document.getElementById('setphotos').view = this;
   },
   rowCount: 0,
@@ -158,9 +158,9 @@ var fireflix = {
     var p = this.photos[this.selection.currentIndex];
     this.set_photo.src =
      this.fireflix.flickr.get_photo_url(p.server,p.id,p.secret,'t');
-    this.set_photo.hidden = false;
+    this.set_photo_props.hidden = false;
    }else{
-    this.set_photo.hidden = true;
+    this.set_photo_props.hidden = true;
    }
   },
   on_cmd_open: function(ev) {

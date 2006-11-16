@@ -208,10 +208,10 @@
        </treecols>
        <treechildren/>
       </tree>
-      <groupbox id="set_photo_props" orient="horizontal">
+      <groupbox id="set_photo_props" orient="horizontal" hidden="true">
        <vbox width="100" pack="center">
         <hbox pack="center">
-	 <image id="set_photo" hidden="true"
+	 <image id="set_photo"
 	 ondblclick="fireflix.photoset.on_cmd_open(event)" />
 	</hbox>
        </vbox>
