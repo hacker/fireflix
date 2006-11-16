@@ -74,6 +74,15 @@
   </popup>
  </popupset>
 
+ <commandset id="cmdset_setphotos">
+ </commandset>
+
+ <popupset>
+  <popup id="setphotos_menu">
+   <menu label="&panel.setphotos.generate_html;" id="setphotos_html_menu"/>
+  </popup>
+ </popupset>
+
  <commandset id="cmdset_uploads">
   <command id="cmd_uploads_clear" label="&panel.uploads.clear.label;"
   oncommand="fireflix.uploads.on_clear()" />
@@ -199,7 +208,7 @@
       </hbox>
       <tree id="setphotos" rows="2" onselect="fireflix.photoset.on_select()"
       flex="1" ondblclick="fireflix.photoset.on_cmd_open(event)"
-      onkeypress="if(event.keyCode==event.DOM_VK_RETURN) fireflix.photoset.on_cmd_open(event)">
+      onkeypress="if(event.keyCode==event.DOM_VK_RETURN) fireflix.photoset.on_cmd_open(event)" context="setphotos_menu">
        <treecols>
 	<treecol id="sp_title" label="&panel.setphotos.title.label;" flex="1" crop="end" align="start" tooltiptext="&panel.setphotos.title.tip;" />
 	<splitter class="tree-splitter" />

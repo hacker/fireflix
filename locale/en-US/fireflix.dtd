@@ -55,6 +55,8 @@
 <!ENTITY panel.setphotos.upload.label "Uploaded">
 <!ENTITY panel.setphotos.upload.tip "When the picure was uploaded">
 
+<!ENTITY panel.setphotos.generate_html "Generate HTML">
+
 <!ENTITY panel.tagslist.tag.label "Tag">
 
 <!ENTITY panel.uploadlist.file.label "File name">

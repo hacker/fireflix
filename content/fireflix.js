@@ -665,6 +665,15 @@ var fireflix = {
   var rv = this.build_html(this.photoset.photos,uti,utl);
   this.popup_content(rv);
  },
+ on_cmd_setphotos_html: function(csfx,ev) {
+  var uti = csfx.charAt(0); var utl = csfx.charAt(1);
+  var rv = '';
+  for(var p in this.photoset.photos) {
+   if(this.photoset.selection.isSelected(p))
+    rv += this.photo_html(this.photoset.photos[p],uti,utl)+'\n';
+  }
+  this.popup_content(rv);
+ },
 
  on_cmd_uploads_html: function(csfx,ev) {
   var uti = csfx.charAt(0); var utl = csfx.charAt(1);
@@ -921,6 +930,10 @@ var fireflix = {
   this.append_html_menu(
    document.getElementById('sets_html_menu'),
    'stm_','m_bop','cmdset_sets','cmd_sets_html'
+  );
+  this.append_html_menu(
+   document.getElementById('setphotos_html_menu'),
+   'stm_','m_bop','cmdset_setphotos','cmd_setphotos_html'
   );
   this.append_html_menu(
    document.getElementById('uploads_html_menu'),
