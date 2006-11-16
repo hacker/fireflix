@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <news>
+ <version version="0.0.5">
+  <ni>Added toolbar button</ni>
+ </version>
  <version version="0.0.4" date="November 13th, 2006">
   <ni>Added button to remove linebreaks from generated HTML</ni>
   <ni>Added the word 'sidebar' to the extension name so that you don't have to look hard for it</ni>
