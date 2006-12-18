@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <news>
- <version version="0.0.6">
+ <version version="0.0.6" date="December 18th, 2006">
   <ni>Added ability to edit future photo privacy settings before uploading</ni>
   <ni>Show reasons for failed uploads and make uploaded files properties visible after upload is completed (readonly, though).</ni>
   <ni>Added shortcut key for opening fireflix: Ctrl+Shift+X (not configurable, yet)</ni>
   <ni>doubleclicking files in uploads tab</ni>
+  <ni>"What's new?" link in help</ni>
  </version>
  <version version="0.0.5" date="November 17th, 2006">
   <ni>Added toolbar button</ni>

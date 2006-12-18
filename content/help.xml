@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE dialog SYSTEM "chrome://fireflix/locale/fireflix.dtd">
 <html id="help" xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
  <head>
   <title>Fireflix</title>
@@ -7,6 +8,8 @@
  <body>
 
   <p>This is a brief overview of things you can do with <a href="http://kin.klever.net/fireflix/">fireflix</a>.</p>
+
+  <p class="whatsnew"><a href="http://kin.klever.net/fireflix/changelog?v=&autoconf.version;">What's new in <em>&autoconf.version;</em></a></p>
  
   <p>First, you should proceed with authorization. If you haven't done it yet,
   it should happen automatically once you open fireflix sidebar. To clear

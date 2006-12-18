@@ -1,8 +1,9 @@
-0.0.6 ()
+0.0.6 (December 18th, 2006)
   - Added ability to edit future photo privacy settings before uploading
   - Show reasons for failed uploads and make uploaded files properties visible after upload is completed (readonly, though).
   - Added shortcut key for opening fireflix: Ctrl+Shift+X (not configurable, yet)
   - doubleclicking files in uploads tab
+  - "What's new?" link in help
 0.0.5 (November 17th, 2006)
   - Added toolbar button
   - Generating HTML for photos selection in sets browser
