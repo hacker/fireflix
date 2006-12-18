@@ -4,7 +4,7 @@
   xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" >
 
  <menupopup id="viewSidebarMenu">
-  <menuitem observes="viewFireflixSidebar" />
+  <menuitem observes="viewFireflixSidebar" key="fireflix-key" />
  </menupopup>
 
  <broadcasterset id="mainBroadcasterSet">
@@ -25,6 +25,11 @@
    <observes element="viewFireflixSidebar" attribute="tooltiptext"/>
   </toolbarbutton>
  </toolbarpalette>
+
+ <keyset id="mainKeyset">
+  <key id="fireflix-key" command="viewFireflixSidebar"
+   key="&sidekey.key;" modifiers="&sidekey.modifiers;" />
+ </keyset>
 
 </overlay>
 
