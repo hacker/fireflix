@@ -43,6 +43,14 @@ groupbox#upload_file_props label {
  text-align: right;
 }
 
+description#upload_failure {
+ border-top: solid 1px red;
+ margin: 0px; padding: 2px;
+ text-align: left;
+ font-size: 85%;
+ line-height: 105%;
+}
+
 image#search_photo, image#set_photo, image#set_primary {
  border: black 1px solid;
 }

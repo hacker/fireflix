@@ -332,7 +332,7 @@ var fireflix = {
    pull_elements(this,document,[
     'upload_filename','upload_title','upload_file_preview',
     'upload_file_props','upload_progress','upload_tags',
-    'cmd_uploads_upload'
+    'cmd_uploads_upload', 'upload_failure'
    ]);
    document.getElementById('uploadlist').view = this;
   },
@@ -489,26 +489,35 @@ var fireflix = {
    this.upload_title.value='';
    this.upload_title.disabled = true;
    this.upload_file_preview.src = null;
-   this.upload_file_props.hidden = true;
    this.upload_tags.value='';
    this.upload_tags.disabled = true;
+   /* this.upload_file_props.hidden = true; */
   },
   selToProps: function() {
    if(!this.selection.count) {
     this.disableProps();
+    this.upload_file_props.hidden = true;
    }else if(this.selection.count==1) {
     var f=this.files[this.selection.currentIndex];
-    if(f==null || f.state!='pending') {
+    if(f==null) {
      this.disableProps();
+     this.upload_file_props.hidden = true;
     }else{
+     var inactives = f.state!='pending';
      this.upload_filename.value = f.file;
-     this.upload_filename.disabled = false;
+     this.upload_filename.disabled = inactives;
      this.upload_title.value = f.title;
-     this.upload_title.disabled = false;
+     this.upload_title.disabled = inactives;
      this.upload_file_preview.src = 'file:///'+f.file;
-     this.upload_file_props.hidden = false;
      this.upload_tags.value = f.tags;
-     this.upload_tags.disabled = false;
+     this.upload_tags.disabled = inactives;
+     if(f.state=='failed') {
+      this.upload_failure.textContent=f.flickr_errcode+': '+f.flickr_errmsg;
+      this.upload_failure.hidden = false;
+     }else{
+      this.upload_failure.hidden = true;
+     }
+     this.upload_file_props.hidden = false;
     }
    }else{
     var ftitle = null; var onetitle = true;
@@ -539,9 +548,11 @@ var fireflix = {
       this.upload_tags.value = ftags;
      this.upload_tags.disabled = false;
      this.upload_file_preview.src = null;
+     this.upload_failure.hidden = true;
      this.upload_file_props.hidden = false;
     }else
      this.disableProps();
+     this.upload_file_props.hidden = true;
    }
   },
   propsToSel: function(prop) {
