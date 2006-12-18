@@ -628,6 +628,17 @@ var fireflix = {
      this.add(f.path);
     }
    }
+  },
+  on_cmd_open: function(ev) {
+   if(this.selection.currentIndex<0) return;
+   var f = this.files[this.selection.currentIndex];
+   if(f.photoid) {
+    this.fireflix.openTab(
+     this.fireflix.flickr.make_uploader_edit_url(f.photoid)
+    );
+   }else{
+    this.fireflix.openTab( 'file://'+f.file);
+   }
   }
  },
 
@@ -913,11 +924,9 @@ var fireflix = {
    }
   },
   on_cmd_open: function(ev) {
-   if(this.selection.currentIndex<0)
-    return;
+   if(this.selection.currentIndex<0) return;
    var p = this.photos[this.selection.currentIndex];
-   if(!p.id)
-    return;
+   if(!p.id) return;
    this.fireflix.openTab(this.fireflix.flickr.make_photo_url(p,'p'));
   }
  },

@@ -244,7 +244,8 @@
      <vbox flex="1">
       <tree id="uploadlist" rows="2" flex="1"
       onselect="fireflix.uploads.selectionChanged()"
-      context="uploads_menu">
+      context="uploads_menu" ondblclick="fireflix.uploads.on_cmd_open(event)"
+      onkeypress="if(event.keyCode==event.DOM_VK_RETURN) fireflix.uploads.on_cmd_open(event)" >
        <treecols>
 	<treecol id="up_file" label="&panel.uploadlist.file.label;" flex="4" crop="start" align="start"/>
 	<splitter class="tree-splitter" />

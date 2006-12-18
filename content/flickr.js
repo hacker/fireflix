@@ -97,6 +97,7 @@ Flickr.prototype = {
  photo_url: 'http://static.flickr.com/',
  photos_url: 'http://www.flickr.com/photos/',
  upload_url: 'http://www.flickr.com/services/upload/',
+ uploader_edit_url: 'http://www.flickr.com/tools/uploader_edit.gne',
 
  api_sig: function(paramstr) {
   return MD5(toutf8(this.api_shs+paramstr));
@@ -274,6 +275,10 @@ Flickr.prototype = {
  make_photoset_url: function(ps) {
   // TODO: allow for using someone else's photoset?
   return this.photos_url+this.user.nsid+'/sets/'+ps.id;
+ },
+ make_uploader_edit_url: function(pid) {
+  // TODO: handle arrays
+  return this.uploader_edit_url+'?ids='+pid;
  },
 
  upload_file: function(f,fa,on_success,on_failure) {
