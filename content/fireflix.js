@@ -332,9 +332,22 @@ var fireflix = {
    pull_elements(this,document,[
     'upload_filename','upload_title','upload_file_preview',
     'upload_file_props','upload_progress','upload_tags',
-    'cmd_uploads_upload', 'upload_failure'
+    'cmd_uploads_upload', 'upload_failure', 'upload_is_public',
+    'upload_is_friends', 'upload_is_family'
    ]);
    document.getElementById('uploadlist').view = this;
+   this.upload_is_public.addEventListener(
+    'CheckboxStateChange', { that: this,
+     handleEvent: function(ev) { this.that.propsToSel('is_public'); }
+    }, false );
+   this.upload_is_friends.addEventListener(
+    'CheckboxStateChange', { that: this,
+     handleEvent: function(ev) { this.that.propsToSel('is_friends'); }
+    }, false );
+   this.upload_is_family.addEventListener(
+    'CheckboxStateChange', { that: this,
+     handleEvent: function(ev) { this.that.propsToSel('is_family'); }
+    }, false );
   },
   files: new Array(),
   rowCount: 0,
@@ -385,6 +398,7 @@ var fireflix = {
     file: f,
     title: t,
     tags: '',
+    is_public: true, is_friend: false, is_family: false,
     state: 'pending'
    } );
    this.rowCount = this.files.length;
@@ -400,8 +414,12 @@ var fireflix = {
      this.tree.invalidate();
      var _this = this;
      this.fireflix.flickr.upload_file(
-      ff.file, { title: ff.title, tags: ff.tags },
-      function(x,p) {
+      ff.file, { 
+       title: ff.title, tags: ff.tags,
+       is_public: ff.is_public?'1':'0',
+       is_friend: ff.is_friend?'1':'0',
+       is_family: ff.is_family?'1':'0'
+      }, function(x,p) {
        ff.photoid = p;
        _this.batch_ids.push(p);
        ff.state='completed';
@@ -491,6 +509,9 @@ var fireflix = {
    this.upload_file_preview.src = null;
    this.upload_tags.value='';
    this.upload_tags.disabled = true;
+   this.upload_is_public.disabled = true;
+   this.upload_is_friends.disabled = true;
+   this.upload_is_family.disabled = true;
    /* this.upload_file_props.hidden = true; */
   },
   selToProps: function() {
@@ -504,15 +525,15 @@ var fireflix = {
      this.upload_file_props.hidden = true;
     }else{
      var inactives = f.state!='pending';
-     this.upload_filename.value = f.file;
-     this.upload_filename.disabled = inactives;
-     this.upload_title.value = f.title;
-     this.upload_title.disabled = inactives;
+     this.upload_filename.value = f.file; this.upload_filename.disabled = inactives;
+     this.upload_title.value = f.title; this.upload_title.disabled = inactives;
      this.upload_file_preview.src = 'file:///'+f.file;
-     this.upload_tags.value = f.tags;
-     this.upload_tags.disabled = inactives;
+     this.upload_tags.value = f.tags; this.upload_tags.disabled = inactives;
+     this.upload_is_public.checked = f.is_public; this.upload_is_public.disabled = inactives;
+     this.upload_is_friends.checked = f.is_friend; this.upload_is_friends.disabled = inactives;
+     this.upload_is_family.checked = f.is_family; this.upload_is_family.disabled = inactives;
      if(f.state=='failed') {
-      this.upload_failure.textContent=f.flickr_errcode+': '+f.flickr_errmsg;
+      this.upload_failure.textContent=((f.flickr_errcode<0)?'':f.flickr_errcode+': ')+f.flickr_errmsg;
       this.upload_failure.hidden = false;
      }else{
       this.upload_failure.hidden = true;
@@ -559,12 +580,12 @@ var fireflix = {
    if(this.selection.count<=0) return;
    for(var ff in this.files) {
     if(this.selection.isSelected(ff) && this.files[ff].state=='pending') {
-     if(prop=='filename')
-      this.files[ff].file = this.upload_filename.value;
-     if(prop=='title')
-      this.files[ff].title = this.upload_title.value;
-     if(prop=='tags')
-      this.files[ff].tags = this.upload_tags.value;
+     if(prop=='filename') this.files[ff].file = this.upload_filename.value;
+     if(prop=='title') this.files[ff].title = this.upload_title.value;
+     if(prop=='tags') this.files[ff].tags = this.upload_tags.value;
+     if(prop=='is_public') this.files[ff].is_public = this.upload_is_public.checked;
+     if(prop=='is_friends') this.files[ff].is_friend = this.upload_is_friends.checked;
+     if(prop=='is_family') this.files[ff].is_family = this.upload_is_family.checked;
      this.tree.invalidateRow(ff);
     }
    }

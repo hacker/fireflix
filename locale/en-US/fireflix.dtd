@@ -69,6 +69,9 @@
 <!ENTITY panel.upload_props.filename.label "File:">
 <!ENTITY panel.upload_props.title.label "Title:">
 <!ENTITY panel.upload_props.tags.label "Tags:">
+<!ENTITY panel.upload_props.is_public "Public">
+<!ENTITY panel.upload_props.is_friend "Friends">
+<!ENTITY panel.upload_props.is_family "Family">
 
 <!ENTITY panel.uploads.upload.label "Upload">
 <!ENTITY panel.uploads.clear.label "Clear">

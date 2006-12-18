@@ -258,31 +258,38 @@
       <groupbox id="upload_file_props" orient="vertical" hidden="true">
        <hbox>
 	<image id="upload_file_preview" width="100" height="100" />
-	<grid flex="1">
-	 <columns>
-	  <column/>
-	  <column flex="1"/>
-	 </columns>
-	 <rows>
-	  <row>
-	   <label control="upload_filename"
-	   value="&panel.upload_props.filename.label;" />
-	   <textbox id="upload_filename"
-	   oninput="fireflix.uploads.propsToSel('filename')"/>
-	  </row>
-	  <row>
-	   <label control="upload_title" value="&panel.upload_props.title.label;" />
-	   <textbox id="upload_title"
-	   oninput="fireflix.uploads.propsToSel('title')"/>
-	  </row>
-	  <row>
-	   <label control="upload_tags" value="&panel.upload_props.tags.label;" />
-	   <textbox id="upload_tags"
-	   oninput="fireflix.uploads.propsToSel('tags')"/>
-	  </row>
-	  <!-- TODO: description, public, friend, family -->
-	 </rows>
-	</grid>
+	<vbox flex="1">
+	 <grid>
+	  <columns>
+	   <column/>
+	   <column flex="1"/>
+	  </columns>
+	  <rows>
+	   <row>
+	    <label control="upload_filename"
+	    value="&panel.upload_props.filename.label;" />
+	    <textbox id="upload_filename"
+	    oninput="fireflix.uploads.propsToSel('filename')"/>
+	   </row>
+	   <row>
+	    <label control="upload_title" value="&panel.upload_props.title.label;" />
+	    <textbox id="upload_title"
+	    oninput="fireflix.uploads.propsToSel('title')"/>
+	   </row>
+	   <row>
+	    <label control="upload_tags" value="&panel.upload_props.tags.label;" />
+	    <textbox id="upload_tags"
+	    oninput="fireflix.uploads.propsToSel('tags')"/>
+	   </row>
+	   <!-- TODO: description, public, friend, family -->
+	  </rows>
+	 </grid>
+	 <hbox>
+	  <checkbox id="upload_is_public" label="&panel.upload_props.is_public;"/>
+	  <checkbox id="upload_is_friends" label="&panel.upload_props.is_friend;"/>
+	  <checkbox id="upload_is_family" label="&panel.upload_props.is_family;"/>
+	 </hbox>
+	</vbox>
        </hbox>
        <description id="upload_failure" hidden="true"/>
       </groupbox>
