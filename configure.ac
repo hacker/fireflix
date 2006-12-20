@@ -1,4 +1,4 @@
-AC_INIT([fireflix], [0.0.6], [fireflix-bugs@klever.net])
+AC_INIT([fireflix], [0.0.6.1], [fireflix-bugs@klever.net])
 AC_CONFIG_SRCDIR([install.rdf.in])
 AM_INIT_AUTOMAKE([dist-bzip2])
 AC_SUBST([MOZ_EXT_ID],[{4269f719-86de-4668-b8ad-04752c23a69e}])
