@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <news>
+ <version version="0.0.6.2" date="June 19th, 2008">
+  <ni>Firefox 3.0.* compatibility release</ni>
+ </version>
  <version version="0.0.6.1" date="December 20th, 2006">
   <ni>Firefox 2.0.0.* compatibility release</ni>
  </version>
