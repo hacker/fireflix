@@ -37,6 +37,9 @@ groupbox#upload_file_props,
 groupbox#set_props,
 groupbox#set_photo_props {
  background: white;
+ -moz-border-radius: 1ex;
+ border: 1px outset;
+ display: -moz-box;
 }
 
 groupbox#upload_file_props label {
