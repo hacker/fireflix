@@ -19,6 +19,7 @@
     <em:minVersion>1.5</em:minVersion>
     <em:maxVersion>2.0.0.*</em:maxVersion>
     <em:updateLink>http://kin.klever.net/dist/@PACKAGE@-@VERSION@.xpi</em:updateLink>
+    <em:updateHash>sha1:<!--SHA1--></em:updateHash>
    </Description>
   </em:targetApplication>
  </RDF:Description>

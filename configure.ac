@@ -20,7 +20,7 @@ AC_SUBST([COPYING])
 AC_CONFIG_FILES([
  Makefile
   install.rdf
-  update.rdf
+  update-template.rdf
  content/Makefile
   content/autoconf.dtd
  locale/Makefile
