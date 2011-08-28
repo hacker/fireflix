@@ -118,6 +118,26 @@ Flickr.prototype = {
   rv += 'api_sig='+this.api_sig(pstr);
   return rv;
  },
+ api_call_json: function(params,on_success,on_failure) {
+  if(params.auth_token=='default') params.auth_token=this.token;
+  params.format = 'json'; params.nojsoncallback=1;
+  var x = new XMLHttpRequest();
+  x.open("GET",this.api_call_url(params));
+  x.onreadystatechange=function() {
+   if(x.readyState!=4) return false;
+   if(x.status==200) {
+    var rsp=JSON.parse(x.responseText);
+    if(rsp.stat=='ok')
+     on_success && on_success(x,rsp);
+    else
+     on_failure && on_failure(rsp,rsp.stat,rsp.code,rsp.message);
+   }else
+    on_failure && on_failure(x);
+   return true;
+  };
+  x.send(null);
+  return true;
+ },
  api_call: function(params, on_success, on_failure) {
   if(params.auth_token == 'default')
    params.auth_token = this.token;
