@@ -445,31 +445,30 @@ var fireflix = {
     if(psn!=null) {
      var pids = this.batch_ids.join(',');
      var ppid = this.batch_ids[0];
-     var _this = this;
-     this.fireflix.flickr.api_call(
+     var that = this;
+     this.fireflix.flickr.api_call_json(
       {
        method: 'flickr.photosets.create',
        auth_token: 'default',
        title: psn,
        primary_photo_id: ppid
-      }, function(x) {
-       var npid =
-        x.responseXML.getElementsByTagName('photoset').item(0).getAttribute('id');
-       _this.fireflix.flickr.api_call(
+      }, function(x,j) {
+       var npid = j.photoset.id;
+       that.fireflix.flickr.api_call_json(
         {
 	 method: 'flickr.photosets.editPhotos',
 	 auth_token: 'default',
 	 photoset_id: npid,
 	 primary_photo_id: ppid,
 	 photo_ids: pids
-	}, function(x) {
-	 _this.fireflix.refresh_sets();
+	}, function(x,j) {
+	 that.fireflix.refresh_sets();
 	}, function(x,s,c,m) {
-	 _this.fireflix.flickr_failure(x,s,c,m);
+	 that.fireflix.flickr_failure(x,s,c,m);
 	}
        );
       }, function(x,s,c,m) {
-       _this.fireflix.flickr_failure(x,s,c,m);
+       that.fireflix.flickr_failure(x,s,c,m);
       }
      );
     }
