@@ -124,32 +124,26 @@ var fireflix = {
   drop: function(r,o) { },
   canDropBeforeAfter: function(r,b) { return false },
 
-  importXPR: function(xp) {
+  import_json: function(jp) {
    this.tree.beginUpdateBatch();
    this.photos = new Array();
-   var n; while(n=xp.iterateNext()) {
-    this.photos.push(new Photo(n));
-   }
-   this.rowCount = this.photos.length;
+   for(var i in jp) this.photos.push(new Photo(jp[i]));
+   this.rowCount =this.photos.length;
    this.tree.endUpdateBatch();
    this.selection.clearSelection();
   },
   load_photos: function(psid) {
-   var _this = this;
-   this.fireflix.flickr.api_call(
+   var that = this;
+   this.fireflix.flickr.api_call_json(
     {
      method: 'flickr.photosets.getPhotos',
      auth_token: 'default',
      photoset_id: psid,
      extras: 'license,date_upload,date_taken,owner_name,icon_server,original_format,last_update'
-    }, function(xr) {
-     var x = xr.responseXML;
-     var xp = x.evaluate(
-      '/rsp/photoset/photo', x, null,
-      XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
-     _this.importXPR(xp);
+    }, function(x,j) {
+     that.import_json(j.photoset.photo);
     }, function(x,s,c,m) {
-     _this.fireflix.flickr_failure(x,s,c,m);
+     that.fireflix.flickr_failure(x,s,c,m);
     }
    );
   },
@@ -200,29 +194,23 @@ var fireflix = {
   drop: function(r,o) { },
   canDropBeforeAfter: function(r,b) { return false },
 
-  importXPR: function(xp) {
+  import_json: function(j) {
    this.tree.beginUpdateBatch();
    this.sets = new Array();
-   var n; while(n=xp.iterateNext()) {
-    this.sets.push(new Photoset(n));
-   }
+   for(var i in j) this.sets.push(new Photoset(j[i]));
    this.rowCount = this.sets.length;
    this.tree.endUpdateBatch();
   },
   refresh_sets: function() {
-   var _this = this;
-   this.fireflix.flickr.api_call(
+   var that = this;
+   this.fireflix.flickr.api_call_json(
     {
      method: 'flickr.photosets.getList',
      auth_token: 'default'
-    }, function(xr) {
-     var x = xr.responseXML;
-     var xp = x.evaluate(
-      '/rsp/photosets/photoset', x, null,
-      XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
-     _this.importXPR(xp);
+    }, function(x,j) {
+     that.import_json(j.photosets.photoset);
     }, function(x,s,c,m) {
-     _this.fireflix.flickr_failure(x,s,c,m);
+     that.fireflix.flickr_failure(x,s,c,m);
     }
    );
   },
@@ -787,14 +775,14 @@ var fireflix = {
   drop: function(r,o) { },
   canDropBeforeAfter: function(r,b) { return false },
 
-  importXPR: function(xp) {
+  import_json: function(jp) {
    this.selection.clearSelection();
-   this.selection.currentIndex = -1;
-   this.searchresult_props.hidden = true;
+   this.selection.currentIndex=-1;
+   this.searchresult_props.hidden=true;
    this.tree.beginUpdateBatch();
    this.photos = new Array();
-   var n; while(n=xp.iterateNext()) {
-    this.photos.push(new Photo(n));
+   for(var i in jp) {
+    this.photos.push(new Photo(jp[i]));
    }
    this.rowCount = this.photos.length;
    this.tree.endUpdateBatch();
@@ -823,22 +811,19 @@ var fireflix = {
    this.perform_search(pars);
   },
   perform_search: function(p) {
-   var _this = this;
-   this.fireflix.flickr.api_call( p,
-    function(xr) {
-     var x = xr.responseXML;
-     var xp = xp_nodes('/rsp/photos/photo',x);
-     _this.importXPR(xp);
-     _this.tree.ensureRowIsVisible(0);
-     xp = xp_node('/rsp/photos',x);
-     _this.paging.page = parseInt(xp.getAttribute('page'));
-     _this.paging.pages = parseInt(xp.getAttribute('pages'));
-     _this.paging.perpage = parseInt(xp.getAttribute('perpage'));
-     _this.paging.total = parseInt(xp.getAttribute('total'));
-     _this.update_paging();
-     _this.on_select();
+   var that = this;
+   this.fireflix.flickr.api_call_json( p,
+    function(x,j) {
+     that.import_json(j.photos.photo);
+     that.tree.ensureRowIsVisible(0);
+     var pp=j.photos;
+     that.paging.page = pp.page; that.paging.pages = pp.pages;
+     that.paging.perpage = pp.perpage;
+     that.paging.total = pp.total;
+     that.update_paging();
+     that.on_select();
     }, function(x,s,c,m) {
-     _this.fireflix.flickr_failure(x,s,c,m);
+     that.fireflix.flickr_failure(x,s,c,m);
     }
    );
   },
@@ -898,22 +883,21 @@ var fireflix = {
      if(p.description==null && p.description==undefined) {
       var pid = p.id;
       var ci = this.selection.currentIndex;
-      var _this = this;
-      this.fireflix.flickr.api_call(
+      var that = this;
+      this.fireflix.flickr.api_call_json(
        {
 	method: 'flickr.photos.getInfo',
 	auth_token: 'default',
 	photo_id: p.id,
 	secret: p.secret
-       }, function(xr) {
-	var pp = _this.photos[ci];
-	if(ci==_this.selection.currentIndex && pp.id==pid) {
-	 var n = xp_node('/rsp/photo',xr.responseXML);
-	 pp.fromNode_(n);
-	 _this.render_description_frame(pp.description);
+       }, function(x,j) {
+	var pp = that.photos[ci];
+	if(ci==that.selection.currentIndex && pp.id==pid) {
+	 pp.fromJSON_(j.photo);
+	 that.render_description_frame(pp.description);
 	}
        }, function(x,s,c,m) {
-	_this.fireflix.flickr_failure(x,s,c,m);
+	that.fireflix.flickr_failure(x,s,c,m);
        }
       );
       this.searchresult_props.hidden = false;

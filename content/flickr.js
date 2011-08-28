@@ -6,7 +6,7 @@ function Photoset(s) {
  if(s instanceof Photoset) {
    for(var p in s) this[p]=s[p];
  }else
-  this.fromNode(s);
+  this.fromJSON(s);
 }
 Photoset.prototype = {
  id: null,
@@ -16,15 +16,13 @@ Photoset.prototype = {
  photos: null,
  title: null,
  description: null,
- fromNode: function(n) {
-  this.id = n.getAttribute('id');
-  this.primary = n.getAttribute('primary');
-  this.secret = n.getAttribute('secret');
-  this.server = n.getAttribute('server');
-  this.photos = n.getAttribute('photos');
-  this.title = n.getElementsByTagName('title').item(0).firstChild.nodeValue;
-  this.description = n.getElementsByTagName('description').item(0).firstChild;
-  if(this.description) this.description = this.description.nodeValue;
+ fromJSON: function(j) {
+  this.id=j.id;
+  this.primary = j.primary;
+  this.secret = j.secret; this.server = j.server;
+  this.photos = j.photos;
+  this.title = j.title._content;
+  this.description = j.description._content;
  }
 };
 
@@ -35,7 +33,7 @@ function Photo(s) {
  if(s instanceof Photo) {
   for(var p in s) this[p]=s[p];
  }else
-  this.fromNode(s);
+  this.fromJSON(s);
 }
 Photo.prototype = {
  id: null, secret: null,
@@ -48,34 +46,29 @@ Photo.prototype = {
  iconserver: null,
  originalformat: null,
  lastupdate: null,
- fromNode: function(n) {
-  this.id = n.getAttribute('id'); this.secret = n.getAttribute('secret');
-  this.server = n.getAttribute('server');
-  this.title = n.getAttribute('title');
-  this.isprimary = n.getAttribute('isprimary');
-  this.license = n.getAttribute('license');
-  this.dateupload = n.getAttribute('dateupload');
-  this.datetaken = n.getAttribute('datetaken'); this.datetakengranularity = n.getAttribute('datetakengranularity');
-  this.ownername = n.getAttribute('ownername');
-  this.iconserver = n.getAttribute('iconserver');
-  this.originalformat = n.getAttribute('originalformat');
-  this.lastupdate = n.getAttribute('lastupdate');
+ fromJSON: function(j) {
+  this.id = j.id; this.secret = j.secret;
+  this.server = j.server;
+  this.title=j.title;
+  this.isprimary = j.isprimary;
+  this.license = j.license;
+  this.dateupload = j.dateupload;
+  this.datetaken=j.datetaken; j.datetakengranularity=j.datetakengranularity;
+  this.ownername=j.ownername;
+  this.iconserver=j.iconserver;
+  this.originalformat=j.originalformat;
+  this.lastupdate=j.lastupdate;
  },
- fromNode_: function(n) {
-  var t;
-  // TODO: @rotation @isfavorite
+ fromJSON_: function(j) {
   this.owner = {};
-  t = n.getElementsByTagName('owner').item(0);
-  if(t) {
-   this.owner.nsid=t.getAttribute('nsid');
-   this.owner.username=t.getAttribute('username');
-   this.owner.realname=t.getAttribute('realname');
-   this.owner.location=t.getAttribute.location;
+  var t;
+  if((t=j.owner)) {
+   this.owner.nsid=t.nsid;
+   this.owner.username=t.username; this.owner.realname=t.realname;
+   this.owner.location=t.location;
   }
-  t = n.getElementsByTagName('description').item(0);
-  if(t && t.firstChild) {
-   this.description = t.firstChild.nodeValue;
-  }
+  if((t=j.description)) this.description=t._content;
+  // TODO: @rotation @isfavorite
   // TODO: visibility/@ispublic visibility/@isfriend visibility/@isfamily 
   // TODO: dates/@posted dates/@taken dates/@takengranularity dates/@lastupdate
   // TODO: permissions/@permcomment permsiions/@permaddmeta
