@@ -630,36 +630,32 @@ var fireflix = {
    null, "dependent,modal,dialog,chrome", this,
    pset );
   if(pset.dirty) {
-   var _this = this;
-   this.flickr.api_call(
+   var that = this;
+   this.flickr.api_call_json(
     {
      method: 'flickr.photosets.editMeta',
      auth_token: 'default',
      photoset_id: pset.id,
      title: pset.title,
      description: pset.description
-    }, function(xr) {
+    }, function(x,j) {
      pset.dirty = false;
-     _this.flickr.api_call(
+     that.flickr.api_call_json(
       {
        method: 'flickr.photosets.getPhotos',
        auth_token: 'default',
        photoset_id: pset.id
-      }, function(xr) {
-       var x = xr.responseXML;
-       var xp = x.evaluate(
-        '/rsp/photoset/photo', x, null,
-	XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
+      }, function(x,j) {
+       var pp = j.photoset.photo;
        var phids = new Array();
        var priph = null;
-       var n; while(n=xp.iterateNext()) {
-        var pid = n.getAttribute('id');
-        phids.push( pid );
-	if(pid==pset.primary && n.getAttribute('isprimary')!='1')
-	 priph = pid;
+       for(var i in pp) {
+        var pid = pp[i].id;
+	phids.push(pid);
+	if(pid==pset.primary && pp[i].isprimary) priph = pid;
        }
        if(priph) {
-	_this.flickr.api_call(
+	that.flickr.api_call_json(
 	 {
 	  method: 'flickr.photosets.editPhotos',
 	  auth_token: 'default',
@@ -667,16 +663,16 @@ var fireflix = {
 	  primary_photo_id: priph,
 	  photo_ids: phids.join(',')
 	 }, function() { }, function(x,s,c,m) { /* flickr.photosets.editPhotos */
-	  _this.flickr_failure(x,s,c,m);
+	  that.flickr_failure(x,s,c,m);
 	 }
 	);
        }
       }, function(x,s,c,m) { /* flickr.photosets.getPhotos */
-       _this.flickr_failure(x,s,c,m);
+       that.flickr_failure(x,s,c,m);
       }
      );
     }, function(x,s,c,m) { /* flickr.photosets.editMeta */
-     _this.flickr_failure(x,s,c,m);
+     that.flickr_failure(x,s,c,m);
     }
    );
   }
