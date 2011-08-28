@@ -233,22 +233,16 @@ var fireflix = {
 
  refresh_user_tags: function() {
   var lb = document.getElementById('tagslist');
-  var _this = this;
-  this.flickr.api_call(
+  var that = this;
+  this.flickr.api_call_json(
    {
     method: 'flickr.tags.getListUser',
     auth_token: 'default',
-   }, function(xr) {
-    var x = xr.responseXML;
-    var xp = x.evaluate(
-     '/rsp/who/tags/tag', x, null,
-     XPathResult.ORDERED_NODE_ITERATOR_TYPE, null );
-    // TODO: clear list
-    var n; while(n=xp.iterateNext()) {
-     lb.appendItem(n.firstChild.nodeValue);
-    }
+   }, function(x,j) {
+    var tt = j.who.tags.tag;
+    for(var i in tt) lb.appendItem(tt[i]._content);
    }, function(x,s,c,m) {
-    _this.flickr_failure(x,s,c,m);
+    that.flickr_failure(x,s,c,m);
    }
   );
  },
